@@ -38,6 +38,9 @@ class Characters {
     int startWood;
     int startEnergy;
 };
+void hadrianStart();
+void startScreen();
+void questionsFunc();
 
 void characterSelect(){
     string charNameInput;
@@ -91,16 +94,16 @@ class Questions {
     public:
     string questionText;
     void resourceUp(int source, int Inc, int Mod){
-        source + Inc + Mod;
+        source += Inc + Mod;
     };
     void resourceDown(int source, int Dec){
-        source - Dec;
+        source -= Dec;
     }
     void statUp(int source, int Inc){
-        source + Inc;
+        source += Inc;
     }
     void statDown(int source, int Dec){
-        source - Dec;
+        source -= Dec;
     }
 };
 void questionsFunc(){ 
@@ -169,15 +172,15 @@ void questionsFunc(){
     int randomNum1 = rand()%7-1;
     int randomNum2 = rand()%7-1;
     if (randomNum2 == randomNum1 && randomNum2 !=0) {
-        randomNum2-1;
+        randomNum2-=1;
     } else if (randomNum2 == randomNum1 && randomNum2 !=6) {
-        randomNum2+1;
+        randomNum2+=1;
     }
     int randomNum3 = rand()%7-1;
     if (randomNum3 == randomNum1 || randomNum3 == randomNum2 && randomNum3>=2){
-        randomNum3-2;
+        randomNum3-=2;
     } else if (randomNum3 == randomNum1 || randomNum3 == randomNum2 && randomNum3<=4){
-        randomNum3+2;
+        randomNum3+=2;
     }
 
 
@@ -270,9 +273,9 @@ void questionsFunc(){
             cin.clear();
         }
         
-        energy + endurance;
+        energy += endurance;
 
-        clockDown - 7;
+        clockDown -= 7;
         if (clockDown > 0) {
             startScreen();
         } else {
