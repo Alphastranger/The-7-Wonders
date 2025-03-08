@@ -92,6 +92,7 @@ void startScreen(){
         cout << "Energy:" << energy << " Endurance:" << endurance << "\n";
         questionsFunc();
     };
+    
 //Questions
 class Questions {
     public:
