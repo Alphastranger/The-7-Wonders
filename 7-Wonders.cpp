@@ -65,7 +65,7 @@ void clockTicker(){
 void characterSelect(){
     string charNameInput;
     cout << "-----7 WONDERS-----"<<"\n""\n";
-    cout << "Select your character" << "\n";
+    cout << "Type in their name to select your character" << "\n";
     cout << "1. Hadrian" << "\n";
     cout << " A wise and steady emperor of Rome. Gifted in Leadership and stoneworking." << "\n";
     cout << "2. Nefertiti" << "\n";
@@ -134,8 +134,8 @@ void nefertitiStart(){
     resources["energy"] = Nefertiti.startEnergy;
     uniqueQuest = Nefertiti.Quest;
     nefertitiBool = true;
-    cout << "Blessings upon you great Queen of the Nile! Welcome to 7 Wonders!"<<"\n";
-    cout << "In this game, you must race to complete all seven world wonders before the time runs out!";
+    cout << "\n""Blessings upon you great Queen of the Nile! Welcome to 7 Wonders!"<<"\n""\n";
+    cout << "In this game, you must race to complete all seven world wonders before the time runs out!""\n";
     startScreen();
 }
 void startScreen(){
@@ -143,12 +143,17 @@ void startScreen(){
   intelMod = (statistics["intelligence"]/3)*10;
   cunningMod = (statistics["cunning"]/2)*10;
   enduranceMod = (statistics["endurance"]/4);
-        cout << "\n" << charName << "    " << "Days Left: " << clockDown << "\n" << "\n";
+        cout << "\n" << charName << "  |  " << "Days Left: " << clockDown << "\n" << "\n";
         cout << "Resources:   " << "Stats:" << "\n";
-        cout << "Gold:" << resources["gold"] << " Leadership:" << statistics["leadership"] << "\n";
-        cout << "Stone:" << resources["stone"] << " Intelligence:" << statistics["intelligence"] << "\n";
-        cout << "Wood:" << resources["wood"] << " Cunning:" << statistics["cunning"] << "\n";
-        cout << "Energy:" << resources["energy"] << " Endurance:" << statistics["endurance"] << "\n";
+        cout << "----------------------------------------------"<< "\n";
+        cout << "| Gold:" << resources["gold"] << " | Leadership:" << statistics["leadership"] << " |""\n";
+        cout << "----------------------------------------------"<< "\n";
+        cout << "| Stone:" << resources["stone"] << " | Intelligence:" << statistics["intelligence"] << " |""\n";
+        cout << "----------------------------------------------"<< "\n";
+        cout << "| Wood:" << resources["wood"] << " | Cunning:" << statistics["cunning"] << " |""\n";
+        cout << "----------------------------------------------"<< "\n";
+        cout << "| Energy:" << resources["energy"] << " | Endurance:" << statistics["endurance"] << " |""\n";
+        cout << "----------------------------------------------"<< "\n";
 
         // cout << "leadMod" << leaderMod << "\n";
         // cout << "intelMod" << intelMod << "\n";
@@ -242,7 +247,7 @@ void questionsFunc(){
             // // questFour.statUp(0,0);
             // questFour.statDown(leadership, 10);
         Questions questFive;
-            questFive.questionText ="Spend 100 gold for 5 energy?";
+            questFive.questionText ="Spend 100 gold for 15 energy?";
             // questFive.resourceUp("energy", 5, enduranceMod);
             // questFive.resourceDown(gold, 100);
             // // questFive.statUp(0, 0);
@@ -253,16 +258,19 @@ void questionsFunc(){
             // questSix.resourceDown(gold, 500);
             // questSix.statUp(cunning,15);
             // // questSix.statDown(0,0);
+        Questions questSeven;
+            questSeven.questionText ="Spend 150 gold to get 220 stone?";    
 
 
-    Questions qArray[7] = {
+    Questions qArray[8] = {
         questZero,
         questOne,
         questTwo,
         questThree,
         questFour,
         questFive,
-        questSix
+        questSix,
+        questSeven,
     };
 
 // Character Questions
@@ -273,9 +281,9 @@ void questionsFunc(){
 
 //Randomizer
     srand(time(0));
-    int randomNum1 = rand()%7;
-    int randomNum2 = rand()%7;
-    int randomNum3 = rand()%7;
+    int randomNum1 = rand()%8;
+    int randomNum2 = rand()%8;
+    int randomNum3 = rand()%8;
     if ((randomNum2 == randomNum1) || (randomNum2 == randomNum3) && randomNum2 >0) {
         randomNum2-1;
     } else if ((randomNum2 == randomNum1) || (randomNum2 == randomNum3) && randomNum2 <6) {
@@ -288,7 +296,7 @@ void questionsFunc(){
     }
 
 // Outputs
-    cout << "----------------------------------------------"<< "\n";
+    cout << "\n""----------------------------------------------"<< "\n";
     cout << "A. " << qArray[randomNum1].questionText << "\n";
     cout << "----------------------------------------------"<< "\n";
     cout << "B. " << qArray[randomNum2].questionText << "\n";
@@ -299,7 +307,9 @@ void questionsFunc(){
     cout << "----------------------------------------------"<< "\n";
     cout << "E. " << uniqueQuest << "\n";
     cout << "----------------------------------------------"<< "\n";
-    cout <<"Please input the associated letter with your answer."<<"\n";
+    cout << "F. Skip Turn for 5 Energy""\n";
+    cout << "----------------------------------------------"<< "\n";
+    cout << "\n""Please input the letter associated with your answer."<<"\n";
 
     cin >> answerVar;
 
@@ -321,10 +331,13 @@ void questionsFunc(){
                 questFour.resourceUp("gold", 300, cunningMod);
             } else if ( randomNum1 == 5) {
                 questFive.resourceDown("gold", 100);
-                questFive.resourceUp("energy", 5, enduranceMod);
+                questFive.resourceUp("energy", 15, enduranceMod);
             } else if ( randomNum1 == 6) {
                 questSix.resourceDown("gold", 500);
                 questSix.statUp("cunning",15);
+            } else if (randomNum1 == 7) {
+                questSeven.resourceDown("gold", 150);
+                questSeven.resourceUp("stone", 220, leaderMod);
             }
         } else if ( answerVar == 'B' || answerVar == 'b') {
             if (randomNum2 == 0){
@@ -344,10 +357,13 @@ void questionsFunc(){
                 questFour.resourceUp("gold", 300, cunningMod);
             } else if ( randomNum2 == 5) {
                 questFive.resourceDown("gold", 100);
-                questFive.resourceUp("energy", 5, enduranceMod);
+                questFive.resourceUp("energy", 15, enduranceMod);
             } else if ( randomNum2 == 6) {
                 questSix.resourceDown("gold", 500);
                 questSix.statUp("cunning",15);
+            }else if (randomNum2 == 7) {
+                questSeven.resourceDown("gold", 150);
+                questSeven.resourceUp("stone", 220, leaderMod);
             }
         } else if ( answerVar == 'C' || answerVar == 'c') {
             if (randomNum3 == 0){
@@ -367,10 +383,13 @@ void questionsFunc(){
                 questFour.resourceUp("gold", 300, cunningMod);
             } else if ( randomNum3 == 5) {
                 questFive.resourceDown("gold", 100);
-                questFive.resourceUp("energy", 5, enduranceMod);
+                questFive.resourceUp("energy", 15, enduranceMod);
             } else if ( randomNum3 == 6) {
                 questSix.resourceDown("gold", 500);
                 questSix.statUp("cunning",15);
+            }else if (randomNum3 == 7) {
+                questSeven.resourceDown("gold", 150);
+                questSeven.resourceUp("stone", 220, leaderMod);
             }
         } else if ( answerVar == 'D' || answerVar == 'd'){
             if (resources["stone"]>=pyramids.stoneCost && resources["wood"]>=pyramids.woodCost){
@@ -399,7 +418,9 @@ void questionsFunc(){
         } else if ( answerVar == 'E' || answerVar == 'e' && nefertitiBool==true){ 
                 questCharacter.resourceDown("energy", 10);
                 questCharacter.resourceUp("gold", 200, cunningMod);                
-            } else {
+        } else if ( answerVar == 'F' || answerVar == 'f'){
+                resources["energy"] += 5;
+        } else {
             cout << "\n""Invalid input. Please enter a valid answer."<< "\n";
             cin.clear();
         }
