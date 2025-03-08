@@ -183,7 +183,12 @@ void questionsFunc(){
         int x = resources[source];
         int y = Dec;
         int sum = x - y;
+        if (sum<0) {
+            cout << "Invalid resources"<<"\n";
+            clockTicker();
+        } else {
         resources[source]=sum;
+        }
     }
     void statUp(string source, int Inc){
         int x = statistics[source];
@@ -195,7 +200,12 @@ void questionsFunc(){
         int x = statistics[source];
         int y = Dec;
         int sum = x - y;
+        if (sum<0) {
+            cout << "Invalid stats"<<"\n";
+            clockTicker();
+        }else {
         statistics [source]=sum;
+        }
     }
 };
     char answerVar;
@@ -260,19 +270,19 @@ void questionsFunc(){
         
 
 //Randomizer
-
+    srand(time(0));
     int randomNum1 = rand()%7;
     int randomNum2 = rand()%7;
     int randomNum3 = rand()%7;
-    if (randomNum2 == randomNum1 || randomNum2 == randomNum3 && randomNum2 !=0) {
-        randomNum2-=1;
-    } else if (randomNum2 == randomNum1 || randomNum2 == randomNum3 && randomNum2 !=6) {
-        randomNum2+=1;
+    if ((randomNum2 == randomNum1) || (randomNum2 == randomNum3) && randomNum2 >0) {
+        randomNum2-1;
+    } else if ((randomNum2 == randomNum1) || (randomNum2 == randomNum3) && randomNum2 <6) {
+        randomNum2+1;
     }  
-    if (randomNum3 == randomNum1 || randomNum3 == randomNum2 && randomNum3!=0){
-        randomNum3-=1;
-    } else if (randomNum3 == randomNum1 || randomNum3 == randomNum2 && randomNum3!=6){
-        randomNum3+=1;
+    if ((randomNum3 == randomNum1) || (randomNum3 == randomNum2) && randomNum3<0){
+        randomNum3-1;
+    } else if ((randomNum3 == randomNum1) || (randomNum3 == randomNum2) && randomNum3>6){
+        randomNum3+1;
     }
 
 // Outputs
