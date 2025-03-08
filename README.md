@@ -18,4 +18,4 @@ A simple application designed around building wonders before time runs out.
 ## Fixes
 - Randomizer still gives multiples of the same question.
 - Inputting a wrong answer still progresses time forward.
-- Every time you answer a question an entirely new window pops up.
+- Every time you answer a question an entirely new prompt pops up.

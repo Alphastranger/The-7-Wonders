@@ -64,11 +64,13 @@ void clockTicker(){
 
 void characterSelect(){
     string charNameInput;
+    cout << "-----7 WONDERS-----"<<"\n""\n";
     cout << "Select your character" << "\n";
     cout << "1. Hadrian" << "\n";
     cout << " A wise and steady emperor of Rome. Gifted in Leadership and stoneworking." << "\n";
     cout << "2. Nefertiti" << "\n";
     cout << " The wife of Akhenaten who famously pushed Egypt towards monotheism. Gifted in Cunning and tithes." << "\n";
+    cout << "\n""\n";
     cin >> charNameInput;
     if (charNameInput == "Hadrian" || charNameInput == "hadrian"){
         hadrianStart();
@@ -104,8 +106,8 @@ void hadrianStart(){
     uniqueQuest = Hadrian.Quest;
     hadrianBool = true;
     //Later we want energy to be calculated off the endurance stat
-    cout << "Ave imperator Emperor Hadrian! Welcome to 7 Wonders!"<<"\n";
-    cout << "In this game, you must race to complete all seven world wonders before the time runs out!";
+    cout << "\n""Ave imperator Emperor Hadrian! Welcome to 7 Wonders!"<<"\n""\n";
+    cout << "In this game, you must race to complete all seven world wonders before the time runs out!""\n";
     startScreen();
 };
 
@@ -148,10 +150,10 @@ void startScreen(){
         cout << "Wood:" << resources["wood"] << " Cunning:" << statistics["cunning"] << "\n";
         cout << "Energy:" << resources["energy"] << " Endurance:" << statistics["endurance"] << "\n";
 
-        cout << "leadMod" << leaderMod << "\n";
-        cout << "intelMod" << intelMod << "\n";
-        cout << "cunMod " << cunningMod << "\n";
-        cout << "endMod" << enduranceMod << "\n";
+        // cout << "leadMod" << leaderMod << "\n";
+        // cout << "intelMod" << intelMod << "\n";
+        // cout << "cunMod " << cunningMod << "\n";
+        // cout << "endMod" << enduranceMod << "\n";
         questionsFunc();
     };
     
@@ -184,7 +186,7 @@ void questionsFunc(){
         int y = Dec;
         int sum = x - y;
         if (sum<0) {
-            cout << "Invalid resources"<<"\n";
+            cout << "\n""INVALID RESOURCES"<<"\n";
             clockTicker();
         } else {
         resources[source]=sum;
@@ -201,7 +203,7 @@ void questionsFunc(){
         int y = Dec;
         int sum = x - y;
         if (sum<0) {
-            cout << "Invalid stats"<<"\n";
+            cout << "\n""INVALID STATS"<<"\n";
             clockTicker();
         }else {
         statistics [source]=sum;
@@ -381,7 +383,7 @@ void questionsFunc(){
                 int woodSum = g-h;
                 resources["wood"]=woodSum;
 
-                cout << "You have constructed the mighty Pyramids! Look upon your works with pride, for you are a lion amongst sheep!" << "\n";
+                cout << "\n"<< "You have constructed the mighty Pyramids! Look upon your works with pride, for you are a lion amongst sheep!" << "\n"<<"\n"<<"\n";
                 cout << "Type 'end' to end game"<< "\n";
                 string endVar;
                 cin >> endVar;
@@ -398,7 +400,7 @@ void questionsFunc(){
                 questCharacter.resourceDown("energy", 10);
                 questCharacter.resourceUp("gold", 200, cunningMod);                
             } else {
-            cout << "Invalid input. Please enter a valid answer."<< "\n";
+            cout << "\n""Invalid input. Please enter a valid answer."<< "\n";
             cin.clear();
         }
         
