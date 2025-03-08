@@ -40,10 +40,19 @@ class Characters {
     int startStone;
     int startWood;
     int startEnergy;
+    string Quest;
 };
+// Character Unique Questions
+string uniqueQuest;
+bool hadrianBool;
+bool nefertitiBool;
+// Function Declarations
 void hadrianStart();
+void nefertitiStart();
 void startScreen();
 void questionsFunc();
+
+// Count Down
 void clockTicker(){
         clockDown -= 7;
         if (clockDown > 0) {
@@ -57,9 +66,14 @@ void characterSelect(){
     string charNameInput;
     cout << "Select your character" << "\n";
     cout << "1. Hadrian" << "\n";
+    cout << " A wise and steady emperor of Rome. Gifted in Leadership and stoneworking." << "\n";
+    cout << "2. Nefertiti" << "\n";
+    cout << " The wife of Akhenaten who famously pushed Egypt towards monotheism. Gifted in Cunning and tithes." << "\n";
     cin >> charNameInput;
     if (charNameInput == "Hadrian" || charNameInput == "hadrian"){
         hadrianStart();
+    } else if (charNameInput == "Nefertiti" || charNameInput == "nefertiti") {
+        nefertitiStart();
     } else {
         cout << "Please put in the correct name"<< "\n";
         characterSelect();
@@ -75,8 +89,9 @@ void hadrianStart(){
         Hadrian.startEnd = 10;
         Hadrian.startGold = 300;
         Hadrian.startStone = 300;
-        Hadrian.startWood = 100;
+        Hadrian.startWood = 200;
         Hadrian.startEnergy = 10;
+        Hadrian.Quest = "Erect a border wall, costing 50 stone and granting 20 energy?";
     charName = Hadrian.name;
     statistics["leadership"] = Hadrian.startLead;
     statistics["intelligence"] = Hadrian.startInt;
@@ -86,11 +101,41 @@ void hadrianStart(){
     resources["stone"] = Hadrian.startStone;
     resources["wood"] = Hadrian.startWood;
     resources["energy"] = Hadrian.startEnergy;
+    uniqueQuest = Hadrian.Quest;
+    hadrianBool = true;
     //Later we want energy to be calculated off the endurance stat
     cout << "Ave imperator Emperor Hadrian! Welcome to 7 Wonders!"<<"\n";
     cout << "In this game, you must race to complete all seven world wonders before the time runs out!";
     startScreen();
 };
+
+void nefertitiStart(){
+    Characters Nefertiti;
+        Nefertiti.name = "Nefertiti";
+        Nefertiti.startLead = 5;
+        Nefertiti.startInt = 15;
+        Nefertiti.startCun = 25;
+        Nefertiti.startEnd = 10;
+        Nefertiti.startGold = 500;
+        Nefertiti.startStone = 200;
+        Nefertiti.startWood = 100;
+        Nefertiti.startEnergy = 15;
+        Nefertiti.Quest = "Celebrate Atun with merriment and excess, costing 10 energy and granting 200 gold?";
+    charName = Nefertiti.name;
+    statistics["leadership"] = Nefertiti.startLead;
+    statistics["intelligence"] = Nefertiti.startInt;
+    statistics["cunning"] = Nefertiti.startCun;
+    statistics["endurance"] = Nefertiti.startEnd;
+    resources["gold"]= Nefertiti.startGold;
+    resources["stone"] = Nefertiti.startStone;
+    resources["wood"] = Nefertiti.startWood;
+    resources["energy"] = Nefertiti.startEnergy;
+    uniqueQuest = Nefertiti.Quest;
+    nefertitiBool = true;
+    cout << "Blessings upon you great Queen of the Nile! Welcome to 7 Wonders!"<<"\n";
+    cout << "In this game, you must race to complete all seven world wonders before the time runs out!";
+    startScreen();
+}
 void startScreen(){
   leaderMod = (statistics["leadership"]/1.5)*10;
   intelMod = (statistics["intelligence"]/3)*10;
@@ -107,13 +152,19 @@ void startScreen(){
         cout << "intelMod" << intelMod << "\n";
         cout << "cunMod " << cunningMod << "\n";
         cout << "endMod" << enduranceMod << "\n";
-        cout << "Hadrian's Gold: " << resources["gold"] << "\n";
         questionsFunc();
     };
     
 //Questions
 
 void questionsFunc(){ 
+    // Wonders
+    Wonders pyramids;
+            pyramids.name = "Pyramids";
+            pyramids.stoneCost = 800;
+            pyramids.woodCost = 800;
+
+    // Questions
     class Questions {
     public:
     string questionText;
@@ -202,38 +253,45 @@ void questionsFunc(){
         questSix
     };
 
-        Wonders pyramids;
-            pyramids.name = "Pyramids";
-            pyramids.stoneCost = 800;
-            pyramids.woodCost = 800;
+// Character Questions
+    Questions questCharacter;
+        questCharacter.questionText = uniqueQuest;
+
+        
 
 //Randomizer
 
     int randomNum1 = rand()%7;
     int randomNum2 = rand()%7;
-    if (randomNum2 == randomNum1 && randomNum2 !=0) {
-        randomNum2-=1;
-    } else if (randomNum2 == randomNum1 && randomNum2 !=6) {
-        randomNum2+=1;
-    }
     int randomNum3 = rand()%7;
-    if (randomNum3 == randomNum1 || randomNum3 == randomNum2 && randomNum3>=2){
-        randomNum3-=2;
-    } else if (randomNum3 == randomNum1 || randomNum3 == randomNum2 && randomNum3<=4){
-        randomNum3+=2;
+    if (randomNum2 == randomNum1 || randomNum2 == randomNum3 && randomNum2 !=0) {
+        randomNum2-=1;
+    } else if (randomNum2 == randomNum1 || randomNum2 == randomNum3 && randomNum2 !=6) {
+        randomNum2+=1;
+    }  
+    if (randomNum3 == randomNum1 || randomNum3 == randomNum2 && randomNum3!=0){
+        randomNum3-=1;
+    } else if (randomNum3 == randomNum1 || randomNum3 == randomNum2 && randomNum3!=6){
+        randomNum3+=1;
     }
 
 // Outputs
+    cout << "----------------------------------------------"<< "\n";
     cout << "A. " << qArray[randomNum1].questionText << "\n";
+    cout << "----------------------------------------------"<< "\n";
     cout << "B. " << qArray[randomNum2].questionText << "\n";
+    cout << "----------------------------------------------"<< "\n";
     cout << "C. " << qArray[randomNum3].questionText << "\n";
+    cout << "----------------------------------------------"<< "\n";
     cout << "D. " << pyramids.name << " Stone:" << pyramids.stoneCost << " Wood:" << pyramids.woodCost << "\n";
+    cout << "----------------------------------------------"<< "\n";
+    cout << "E. " << uniqueQuest << "\n";
+    cout << "----------------------------------------------"<< "\n";
     cout <<"Please input the associated letter with your answer."<<"\n";
 
     cin >> answerVar;
 
         if (answerVar == 'A' || answerVar == 'a') {
-            // questZero.resourceUp("gold", 10, cunningMod);
             if (randomNum1 == 0){
                 questZero.resourceUp("gold", 50, cunningMod);
                 questZero.resourceDown("stone", 20);
@@ -322,7 +380,13 @@ void questionsFunc(){
                 cout << "You lack the necessary resources. Pick a different choice."<< "\n";
                 cin.clear();
             }
-        } else {
+        } else if ( answerVar == 'E' || answerVar == 'e' && hadrianBool==true){
+                questCharacter.resourceUp("energy", 20, enduranceMod);
+                questCharacter.resourceDown("stone", 50);
+        } else if ( answerVar == 'E' || answerVar == 'e' && nefertitiBool==true){ 
+                questCharacter.resourceUp("gold", 200, cunningMod);
+                questCharacter.resourceDown("energy", 10);
+            } else {
             cout << "Invalid input. Please enter a valid answer."<< "\n";
             cin.clear();
         }

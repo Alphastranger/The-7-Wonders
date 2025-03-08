@@ -2,9 +2,18 @@
 A simple application designed around building wonders before time runs out.
 
 ## Future Changes
-- Points to modify stats at game start, perhaps with two random options of what to increase
-- Modifier points have increasing costs the higher the stat
-- Energy is calculated by endurance
-- Instead of modifiers, stats determine how much you recieve from each decision
-- Make stats and resources unable to go below zero
+- Points to modify stats at game start, perhaps with two random options of what to increase.
+- Modifier points have increasing costs the higher the stat.
+- Energy is calculated by endurance.
+- Instead of modifiers, stats determine how much you recieve from each decision.
+- Make stats and resources unable to go below zero.
 - If a stat isn't high enough to pay for a resource, make it unavailable, or penalize them for trying.
+- Make a set list of wonders that are chosen at random and popped out of an array after they are built.
+- Add additional characters.
+- Each character has a unique option E that they can always use.
+
+## Fixes
+- Randomizer doesn't work and sometimes leaves a blank option.
+- Inputting a wrong answer still progresses time forward.
+- Every time you answer a question an entirely new window pops up.
+- Add lines between questions.
