@@ -16,6 +16,6 @@ A simple application designed around building wonders before time runs out.
 - Bonuses from completed wonders.
 
 ## Fixes
-- Randomizer doesn't work and sometimes leaves a blank option.
+- Randomizer still gives multiples of the same question.
 - Inputting a wrong answer still progresses time forward.
 - Every time you answer a question an entirely new window pops up.

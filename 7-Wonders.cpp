@@ -140,7 +140,7 @@ void startScreen(){
   leaderMod = (statistics["leadership"]/1.5)*10;
   intelMod = (statistics["intelligence"]/3)*10;
   cunningMod = (statistics["cunning"]/2)*10;
-  enduranceMod = (statistics["endurance"]/4)*10;
+  enduranceMod = (statistics["endurance"]/4);
         cout << "\n" << charName << "    " << "Days Left: " << clockDown << "\n" << "\n";
         cout << "Resources:   " << "Stats:" << "\n";
         cout << "Gold:" << resources["gold"] << " Leadership:" << statistics["leadership"] << "\n";
@@ -385,7 +385,7 @@ void questionsFunc(){
                 cout << "Type 'end' to end game"<< "\n";
                 string endVar;
                 cin >> endVar;
-                return;
+                exit(0);
             } else {
                 cout << "You lack the necessary resources. Pick a different choice."<< "\n";
                 cin.clear();
@@ -402,7 +402,7 @@ void questionsFunc(){
             cin.clear();
         }
         
-        energy += enduranceMod;
+        resources["energy"] += enduranceMod;
         clockTicker();
 };
 
