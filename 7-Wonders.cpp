@@ -304,9 +304,20 @@ void questionsFunc(){
             }
         } else if ( answerVar == 'D' || answerVar == 'd'){
             if (resources["stone"]>=pyramids.stoneCost && resources["wood"]>=pyramids.woodCost){
+                int x = resources["stone"];
+                int y = pyramids.stoneCost;
+                int stoneSum = x-y;
+                resources["stone"]=stoneSum;
+                int g = resources["wood"];
+                int h = pyramids.woodCost;
+                int woodSum = g-h;
+                resources["wood"]=woodSum;
+
                 cout << "You have constructed the mighty Pyramids! Look upon your works with pride, for you are a lion amongst sheep!" << "\n";
-                cout << "Press enter to end game"<< "\n";
-                cin.ignore();
+                cout << "Type 'end' to end game"<< "\n";
+                string endVar;
+                cin >> endVar;
+                return;
             } else {
                 cout << "You lack the necessary resources. Pick a different choice."<< "\n";
                 cin.clear();
