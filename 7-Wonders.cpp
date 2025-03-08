@@ -1,9 +1,11 @@
 #include <iostream>
 #include <string>
+#include <map>
 using namespace std;
 // Clock
 int clockDown = 154;
 // Resources:
+map<string, int> resources;
 int gold;
 int stone;
 int wood;
@@ -45,6 +47,7 @@ void questionsFunc();
 void characterSelect(){
     string charNameInput;
     cout << "Select your character" << "\n";
+    cout << "1. Hadrian" << "\n";
     cin >> charNameInput;
     if (charNameInput == "Hadrian" || charNameInput == "hadrian"){
         hadrianStart();
@@ -70,7 +73,7 @@ void hadrianStart(){
     intelligence = Hadrian.startInt;
     cunning = Hadrian.startCun;
     endurance = Hadrian.startEnd;
-    gold = Hadrian.startGold;
+    resources["gold"]= Hadrian.startGold;
     stone = Hadrian.startStone;
     wood = Hadrian.startWood;
     energy = Hadrian.startEnergy;
@@ -81,9 +84,9 @@ void hadrianStart(){
 void startScreen(){
   
        
-        cout << charName << "\n" << "\n";
+        cout << "\n" << charName << "    " << clockDown << "\n" << "\n";
         cout << "Resources:   " << "Stats:" << "\n";
-        cout << "Gold:" << gold << " Leadership:" << leadership << "\n";
+        cout << "Gold:" << resources["gold"] << " Leadership:" << leadership << "\n";
         cout << "Stone:" << stone << " Intelligence:" << intelligence << "\n";
         cout << "Wood:" << wood << " Cunning:" << cunning << "\n";
         cout << "Energy:" << energy << " Endurance:" << endurance << "\n";
@@ -93,11 +96,15 @@ void startScreen(){
 class Questions {
     public:
     string questionText;
-    void resourceUp(int source, int Inc, int Mod){
-        source += Inc + Mod;
+    void resourceUp(string source, int Inc, int Mod){
+        int x = resources[source];
+        cout << x;
+        x = x + Inc + Mod;
+        resources[source]=x;
+        cout << resources[source];
     };
     void resourceDown(int source, int Dec){
-        source -= Dec;
+        source = source - Dec;
     }
     void statUp(int source, int Inc){
         source += Inc;
@@ -110,37 +117,37 @@ void questionsFunc(){
     char answerVar;
         Questions questZero;
             questZero.questionText = "Spend 20 stone to get 50 gold?";
-            questZero.resourceUp(gold, 50, cunningMod);
+            questZero.resourceUp("gold", 50, cunningMod);
             questZero.resourceDown(stone, 20);
             // questZero.statUp(0, 0);
             // questZero.statDown(0, 0);
         Questions questOne;
             questOne.questionText = "Spend 10 energy to mine 100 stone?";
-            questOne.resourceUp(stone, 100, leaderMod);
+            questOne.resourceUp("stone", 100, leaderMod);
             questOne.resourceDown(energy, 10);
             // questOne.statUp(0, 0);
             // questOne.statDown(0, 0);
         Questions questTwo;
             questTwo.questionText = "Spend 10 energy to harvest 100 wood?";
-            questTwo.resourceUp(wood, 100, intelMod);
+            questTwo.resourceUp("wood", 100, intelMod);
             questTwo.resourceDown(energy, 10);
             // questTwo.statUp(0, 0);
             // questTwo.statDown(0, 0);
         Questions questThree;
             questThree.questionText = "Spend 120 gold to get 200 wood?";
-            questThree.resourceUp(wood, 200, intelMod);
+            questThree.resourceUp("wood", 200, intelMod);
             questThree.resourceDown(gold, 120);
             // questThree.statUp(0, 0);
             // questThree.statDown(0, 0);
         Questions questFour;
             questFour.questionText = "Sacrifice 10 leadership for 300 gold?";
-            questFour.resourceUp(gold, 300, cunningMod);
+            questFour.resourceUp("gold", 300, cunningMod);
             // questFour.resourceDown(0,0);
             // questFour.statUp(0,0);
             questFour.statDown(leadership, 10);
         Questions questFive;
             questFive.questionText ="Spend 100 gold for 5 energy?";
-            questFive.resourceUp(energy, 5, enduranceMod);
+            questFive.resourceUp("energy", 5, enduranceMod);
             questFive.resourceDown(gold, 100);
             // questFive.statUp(0, 0);
             // questFive.statDown(0, 0);
@@ -191,74 +198,75 @@ void questionsFunc(){
     cout <<"Please input the associated letter with your answer."<<"\n";
         cin >> answerVar;
         if (answerVar == 'A' || answerVar == 'a') {
-            if (randomNum1 == 0){
-                questZero.resourceUp(gold, 50, cunningMod);
-                questZero.resourceDown(stone, 20);
-            } else if ( randomNum1 == 1) {
-                questOne.resourceUp(stone, 100, leaderMod);
-                questOne.resourceDown(energy, 10);
-            } else if ( randomNum1 == 2) {
-                questTwo.resourceUp(wood, 100, intelMod);
-                questTwo.resourceDown(energy, 10);
-            } else if ( randomNum1 == 3) {
-                questThree.resourceUp(wood, 200, intelMod);
-                questThree.resourceDown(gold, 120);
-            } else if ( randomNum1 == 4) {
-                questFour.resourceUp(gold, 300, cunningMod);
-                questFour.statDown(leadership, 10);
-            } else if ( randomNum1 == 5) {
-                questFive.resourceUp(energy, 5, enduranceMod);
-                questFive.resourceDown(gold, 100);
-            } else if ( randomNum1 == 6) {
-                questSix.resourceDown(gold, 500);
-                questSix.statUp(cunning,15);
-            }
+            questZero.resourceUp("gold", 10, cunningMod);
+            // if (randomNum1 == 0){
+            //     questZero.resourceUp(gold, 50, cunningMod);
+            //     questZero.resourceDown(stone, 20);
+            // } else if ( randomNum1 == 1) {
+            //     questOne.resourceUp(stone, 100, leaderMod);
+            //     questOne.resourceDown(energy, 10);
+            // } else if ( randomNum1 == 2) {
+            //     questTwo.resourceUp(wood, 100, intelMod);
+            //     questTwo.resourceDown(energy, 10);
+            // } else if ( randomNum1 == 3) {
+            //     questThree.resourceUp(wood, 200, intelMod);
+            //     questThree.resourceDown(gold, 120);
+            // } else if ( randomNum1 == 4) {
+            //     questFour.resourceUp(gold, 300, cunningMod);
+            //     questFour.statDown(leadership, 10);
+            // } else if ( randomNum1 == 5) {
+            //     questFive.resourceUp(energy, 5, enduranceMod);
+            //     questFive.resourceDown(gold, 100);
+            // } else if ( randomNum1 == 6) {
+            //     questSix.resourceDown(gold, 500);
+            //     questSix.statUp(cunning,15);
+            // }
         } else if ( answerVar == 'B' || answerVar == 'b') {
-            if (randomNum2 == 0){
-                questZero.resourceUp(gold, 50, cunningMod);
-                questZero.resourceDown(stone, 20);
-            } else if ( randomNum2 == 1) {
-                questOne.resourceUp(stone, 100, leaderMod);
-                questOne.resourceDown(energy, 10);
-            } else if ( randomNum2 == 2) {
-                questTwo.resourceUp(wood, 100, intelMod);
-                questTwo.resourceDown(energy, 10);
-            } else if ( randomNum2 == 3) {
-                questThree.resourceUp(wood, 200, intelMod);
-                questThree.resourceDown(gold, 120);
-            } else if ( randomNum2 == 4) {
-                questFour.resourceUp(gold, 300, cunningMod);
-                questFour.statDown(leadership, 10);
-            } else if ( randomNum2 == 5) {
-                questFive.resourceUp(energy, 5, enduranceMod);
-                questFive.resourceDown(gold, 100);
-            } else if ( randomNum2 == 6) {
-                questSix.resourceDown(gold, 500);
-                questSix.statUp(cunning,15);
-            }
+            // if (randomNum2 == 0){
+            //     questZero.resourceUp(gold, 50, cunningMod);
+            //     questZero.resourceDown(stone, 20);
+            // } else if ( randomNum2 == 1) {
+            //     questOne.resourceUp(stone, 100, leaderMod);
+            //     questOne.resourceDown(energy, 10);
+            // } else if ( randomNum2 == 2) {
+            //     questTwo.resourceUp(wood, 100, intelMod);
+            //     questTwo.resourceDown(energy, 10);
+            // } else if ( randomNum2 == 3) {
+            //     questThree.resourceUp(wood, 200, intelMod);
+            //     questThree.resourceDown(gold, 120);
+            // } else if ( randomNum2 == 4) {
+            //     questFour.resourceUp(gold, 300, cunningMod);
+            //     questFour.statDown(leadership, 10);
+            // } else if ( randomNum2 == 5) {
+            //     questFive.resourceUp(energy, 5, enduranceMod);
+            //     questFive.resourceDown(gold, 100);
+            // } else if ( randomNum2 == 6) {
+            //     questSix.resourceDown(gold, 500);
+            //     questSix.statUp(cunning,15);
+            // }
         } else if ( answerVar == 'C' || answerVar == 'c') {
-            if (randomNum3 == 0){
-                questZero.resourceUp(gold, 50, cunningMod);
-                questZero.resourceDown(stone, 20);
-            } else if ( randomNum3 == 1) {
-                questOne.resourceUp(stone, 100, leaderMod);
-                questOne.resourceDown(energy, 10);
-            } else if ( randomNum3 == 2) {
-                questTwo.resourceUp(wood, 100, intelMod);
-                questTwo.resourceDown(energy, 10);
-            } else if ( randomNum3 == 3) {
-                questThree.resourceUp(wood, 200, intelMod);
-                questThree.resourceDown(gold, 120);
-            } else if ( randomNum3 == 4) {
-                questFour.resourceUp(gold, 300, cunningMod);
-                questFour.statDown(leadership, 10);
-            } else if ( randomNum3 == 5) {
-                questFive.resourceUp(energy, 5, enduranceMod);
-                questFive.resourceDown(gold, 100);
-            } else if ( randomNum3 == 6) {
-                questSix.resourceDown(gold, 500);
-                questSix.statUp(cunning,15);
-            }
+            // if (randomNum3 == 0){
+            //     questZero.resourceUp(gold, 50, cunningMod);
+            //     questZero.resourceDown(stone, 20);
+            // } else if ( randomNum3 == 1) {
+            //     questOne.resourceUp(stone, 100, leaderMod);
+            //     questOne.resourceDown(energy, 10);
+            // } else if ( randomNum3 == 2) {
+            //     questTwo.resourceUp(wood, 100, intelMod);
+            //     questTwo.resourceDown(energy, 10);
+            // } else if ( randomNum3 == 3) {
+            //     questThree.resourceUp(wood, 200, intelMod);
+            //     questThree.resourceDown(gold, 120);
+            // } else if ( randomNum3 == 4) {
+            //     questFour.resourceUp(gold, 300, cunningMod);
+            //     questFour.statDown(leadership, 10);
+            // } else if ( randomNum3 == 5) {
+            //     questFive.resourceUp(energy, 5, enduranceMod);
+            //     questFive.resourceDown(gold, 100);
+            // } else if ( randomNum3 == 6) {
+            //     questSix.resourceDown(gold, 500);
+            //     questSix.statUp(cunning,15);
+            // }
         } else if ( answerVar == 'D' || answerVar == 'd'){
             if (stone>=pyramids.stoneCost && wood>=pyramids.woodCost){
                 cout << "You have constructed the mighty Pyramids! Look upon your works with pride, for you are a lion amongst sheep!" << "\n";

@@ -5,11 +5,7 @@
             "label": "C/C++: g++ build active file",
             "command": "/usr/bin/g++",
             "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "-g", "${workspaceFolder}/*.cpp", "-o", "${workspaceFolder}/a.out"
             ],
             "options": {
                 "cwd": "${fileDirname}"
