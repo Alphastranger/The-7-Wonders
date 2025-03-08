@@ -284,16 +284,23 @@ void questionsFunc(){
     int randomNum1 = rand()%8;
     int randomNum2 = rand()%8;
     int randomNum3 = rand()%8;
-    if ((randomNum2 == randomNum1) || (randomNum2 == randomNum3) && randomNum2 >0) {
-        randomNum2-1;
-    } else if ((randomNum2 == randomNum1) || (randomNum2 == randomNum3) && randomNum2 <6) {
-        randomNum2+1;
-    }  
-    if ((randomNum3 == randomNum1) || (randomNum3 == randomNum2) && randomNum3<0){
-        randomNum3-1;
-    } else if ((randomNum3 == randomNum1) || (randomNum3 == randomNum2) && randomNum3>6){
-        randomNum3+1;
-    }
+
+    while (randomNum2 == randomNum1 || randomNum2 == randomNum3) {
+        randomNum2 = rand()%8;
+    };
+    while (randomNum3 == randomNum1 || randomNum3 == randomNum2) {
+        randomNum3 = rand()%8;
+    };
+    // if ((randomNum2 == randomNum1) || (randomNum2 == randomNum3) && randomNum2 >0) {
+    //     randomNum2-1;
+    // } else if ((randomNum2 == randomNum1) || (randomNum2 == randomNum3) && randomNum2 <6) {
+    //     randomNum2+1;
+    // }  
+    // if ((randomNum3 == randomNum1) || (randomNum3 == randomNum2) && randomNum3<0){
+    //     randomNum3-1;
+    // } else if ((randomNum3 == randomNum1) || (randomNum3 == randomNum2) && randomNum3>6){
+    //     randomNum3+1;
+    // }
 
 // Outputs
     cout << "\n""----------------------------------------------"<< "\n";
