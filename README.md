@@ -11,9 +11,11 @@ A simple application designed around building wonders before time runs out.
 - Make a set list of wonders that are chosen at random and popped out of an array after they are built.
 - Add additional characters.
 - Each character has a unique option E that they can always use.
+- Skip turn option if they can't access any resources. Gives some paltry energy.
+- Add faith stat.
+- Bonuses from completed wonders.
 
 ## Fixes
 - Randomizer doesn't work and sometimes leaves a blank option.
 - Inputting a wrong answer still progresses time forward.
 - Every time you answer a question an entirely new window pops up.
-- Add lines between questions.
