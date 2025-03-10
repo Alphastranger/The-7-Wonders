@@ -160,52 +160,80 @@ void nefertitiStart(){
     wonderSelect();
 }
 
+///////////////
+// Wonder Select
+///////////////
 
 void wonderSelect(){
    
     vector<string> wonUsed;
-    int wonUsedLength = sizeof(wonUsed)/sizeof(wonUsed[0]);
-
+    int wonUsedLength;
+        if (wonArrTotal == 7) {
+            wonUsedLength=0;
+        } else {
+        wonUsedLength = sizeof(wonUsed)/sizeof(wonUsed[0]);
+    };
     string wonArray[] = {
-        "The Pyramids",
-        "The Colossus",
+        "The_Pyramids",
+        "The_Colossus",
         "Stonehenge",
-        "The Oracle",
-        "The Great Lighthouse",
-        "The Hanging Gardens",
-        "The Great Wall of China"
+        "The_Oracle",
+        "The_Great_Lighthouse",
+        "The_Hanging_Gardens",
+        "The_Great_Wall_of_China"
     };
     vector<string> wonTrueArray;
 
     for (int i=0; i<wonArrTotal; i++){
+        if (wonUsedLength==0){
+            wonTrueArray.push_back(wonArray[i]);
+        } else {
         for (int j=0; i<wonUsedLength-1; j++){
         if (wonArray[i]!=wonUsed[j]){
         wonTrueArray.push_back(wonArray[i]);
+        };
         };
         };
     };
 
     string wonSelect;
     cout << "Please type the name of a wonder to build""\n""\n";
-    cout << "1." + wonTrueArray[0] + "\n";
-    cout << "2." + wonTrueArray[1] + "\n";
-    cout << "3." + wonTrueArray[2] + "\n";
-    cout << "4." + wonTrueArray[3] + "\n";
-    cout << "5." + wonTrueArray[4] + "\n";
-    cout << "6." + wonTrueArray[5] + "\n";
-    cout << "7." + wonTrueArray[6] + "\n";
+    cout << "1. " << wonTrueArray[0] << "\n";
+    cout << "2. " << wonTrueArray[1] << "\n";
+    cout << "3. " << wonTrueArray[2] << "\n";
+    cout << "4. " << wonTrueArray[3] << "\n";
+    cout << "5. " << wonTrueArray[4] << "\n";
+    cout << "6. " << wonTrueArray[5] << "\n";
+    cout << "7. " << wonTrueArray[6] << "\n""\n";
     cin >> wonSelect;
-    for (int i=0; i<wonArrTotal-1; i++){
-        if (wonSelect != wonTrueArray[i]){
-            cout << "\n""Sorry, that is not a valid input! Please try to be exact!""\n";
-            wonderSelect();
-        }else {
-            Wonder = wonSelect;
+    int False = 0;
+    for (int i = 0; i<wonArrTotal; i++){
+        cout << wonTrueArray[i] << "\n";
+        cout << wonSelect << "\n";
+        if (wonSelect == wonTrueArray[i]){
+            cout << "Comparison success""\n";
         };
+        if (wonSelect != wonTrueArray[i]){
+            False++;
+        };
+    };
+    cout << False;
+
+    if (False >= wonArrTotal) {
+        cout << "\n""Sorry, that is not a valid input! Please try to be exact!""\n";
+        wonderSelect();
+    } else {
+        Wonder = wonSelect;
     };
     for (int i=0; i<wonArrTotal; i++){
         wonTrueArray.pop_back();
-    }
+    };
+    // if (wonSelect != wonTrueArray[0]){
+        
+    // }else {
+    //         Wonder = wonSelect;
+    // };
+    
 
     // for (int i=0; i<wonArrTotal; i++){
     //     if ( wonArray[i]==wonSelect){
@@ -499,6 +527,7 @@ void questionsFunc(){
                 resources["wood"]=woodSum;
 
                 cout << "\n"<< "You have constructed" + wonderSlot.name + "! Look upon your works with pride, for you are a lion amongst sheep!" << "\n"<<"\n"<<"\n";
+                wonderSelect();
                 // cout << "Type 'end' to end game"<< "\n";
                 // string endVar;
                 // cin >> endVar;
