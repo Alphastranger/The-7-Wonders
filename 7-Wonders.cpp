@@ -15,13 +15,13 @@ int energy;
 string charName;
 map<string, int> statistics;
 int leadership;
-int leaderMod;
+float leaderMod;
 int intelligence;
-int intelMod;
+float intelMod;
 int cunning;
-int cunningMod;
+float cunningMod;
 int endurance;
-int enduranceMod;
+float enduranceMod;
 // Wonders:
 class Wonders {
     public:
@@ -208,11 +208,11 @@ void wonderSelect(){
     cin >> wonSelect;
     int False = 0;
     for (int i = 0; i<wonArrTotal; i++){
-        cout << wonTrueArray[i] << "\n";
-        cout << wonSelect << "\n";
-        if (wonSelect == wonTrueArray[i]){
-            cout << "Comparison success""\n";
-        };
+        // cout << wonTrueArray[i] << "\n";
+        // cout << wonSelect << "\n";
+        // if (wonSelect == wonTrueArray[i]){
+        //     cout << "Comparison success""\n";
+        // };
         if (wonSelect != wonTrueArray[i]){
             False++;
         };
@@ -234,7 +234,6 @@ void wonderSelect(){
     //         Wonder = wonSelect;
     // };
     
-
     // for (int i=0; i<wonArrTotal; i++){
     //     if ( wonArray[i]==wonSelect){
     //         wonArray[i]=wonArray[i+1];
@@ -256,10 +255,10 @@ void wonderSelect(){
 ///////////////
 
 void startScreen(){
-  leaderMod = (statistics["leadership"]/2);
-  intelMod = (statistics["intelligence"]/3);
-  cunningMod = (statistics["cunning"]/2);
-  enduranceMod = (statistics["endurance"]/4);
+  leaderMod = (statistics["leadership"]/10);
+  intelMod = (statistics["intelligence"]/10);
+  cunningMod = (statistics["cunning"]/10);
+  enduranceMod = (statistics["endurance"]/10);
         cout << "\n" << charName << "  |  " << "Days Left: " << clockDown << "\n" << "\n";
         cout << "Resources:   " << "Stats:" << "\n";
         cout << "----------------------------------------------"<< "\n";
@@ -283,30 +282,30 @@ void questionsFunc(){
     Wonders wonderSlot;
             wonderSlot.name = Wonder;
 
-    if (wonderSlot.name == "The Pyramids"){
+    if (wonderSlot.name == "The_Pyramids"){
             wonderSlot.stoneCost = 1200;
             wonderSlot.woodCost = 1200;
-    } else if (wonderSlot.name == "The Colossus"){
+    } else if (wonderSlot.name == "The_Colossus"){
             wonderSlot.stoneCost = 1600;
             wonderSlot.woodCost = 800;
     } else if (wonderSlot.name == "Stonehenge"){
             wonderSlot.stoneCost = 3000;
             wonderSlot.woodCost = 400;
-    } else if (wonderSlot.name == "The Oracle") {
+    } else if (wonderSlot.name == "The_Oracle") {
             wonderSlot.stoneCost = 700;
             wonderSlot.woodCost = 1700;
-    } else if (wonderSlot.name == "The Great Lighthouse"){
+    } else if (wonderSlot.name == "The_Great_Lighthouse"){
             wonderSlot.stoneCost = 2000;
             wonderSlot.woodCost = 2400;
-    } else if (wonderSlot.name == "The Hanging Gardens"){
+    } else if (wonderSlot.name == "The_Hanging_Gardens"){
             wonderSlot.stoneCost = 3000;
             wonderSlot.woodCost = 3000;
-    } else if (wonderSlot.name == "The Great Wall of China"){
+    } else if (wonderSlot.name == "The_Great_Wall_of_China"){
             wonderSlot.stoneCost = 5000;
             wonderSlot.woodCost = 1000;
     };
 
-    // Questions
+// Questions
     class Questions {
     public:
     string questionText;
@@ -314,7 +313,7 @@ void questionsFunc(){
         int x = resources[source];
         int y = Inc;
         int z = Mod;
-        int sum = x + y + z;
+        int sum = x + y + (y * z);
         resources[source]=sum;
     };
     void resourceDown(string source, int Dec){
@@ -336,14 +335,17 @@ void questionsFunc(){
     }
     void statDown(string source, int Dec){
         int x = statistics[source];
+        cout << x << "X""\n";
         int y = Dec;
+        cout << y << "Y""\n";
         int sum = x - y;
+        cout << sum << "SUM""\n";
         if (sum<0) {
             cout << "\n""INVALID STATS"<<"\n";
             clockTicker();
         }else {
-        statistics [source]=sum;
-        }
+        statistics[source]=sum;
+        };
     }
 };
     char answerVar;
@@ -471,14 +473,14 @@ void questionsFunc(){
                 questChanger.resourceDown("gold", 120);
                 questChanger.resourceUp("wood", 200, intelMod);
             } else if ( randomNum2 == 4) {
-                questChanger.statDown("leadership", 10);
+                questChanger.statDown("leadership", 3);
                 questChanger.resourceUp("gold", 300, cunningMod);
             } else if ( randomNum2 == 5) {
                 questChanger.resourceDown("gold", 100);
                 questChanger.resourceUp("energy", 15, enduranceMod);
             } else if ( randomNum2 == 6) {
                 questChanger.resourceDown("gold", 500);
-                questChanger.statUp("cunning",15);
+                questChanger.statUp("cunning",5);
             } else if (randomNum2 == 7) {
                 questChanger.resourceDown("gold", 150);
                 questChanger.resourceUp("stone", 220, leaderMod);
@@ -500,14 +502,14 @@ void questionsFunc(){
                 questChanger.resourceDown("gold", 120);
                 questChanger.resourceUp("wood", 200, intelMod);
             } else if ( randomNum3 == 4) {
-                questChanger.statDown("leadership", 10);
+                questChanger.statDown("leadership", 3);
                 questChanger.resourceUp("gold", 300, cunningMod);
             } else if ( randomNum3 == 5) {
                 questChanger.resourceDown("gold", 100);
                 questChanger.resourceUp("energy", 15, enduranceMod);
             } else if ( randomNum3 == 6) {
                 questChanger.resourceDown("gold", 500);
-                questChanger.statUp("cunning",15);
+                questChanger.statUp("cunning",5);
             } else if (randomNum3 == 7) {
                 questChanger.resourceDown("gold", 150);
                 questChanger.resourceUp("stone", 220, leaderMod);
