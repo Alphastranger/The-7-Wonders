@@ -13,9 +13,9 @@ A simple application designed around building wonders before time runs out.
 - Each character has a unique option E that they can always use.
 - Skip turn option if they can't access any resources. Gives some paltry energy.
 - Add faith stat.
-- Bonuses from completed wonders.
+- Bonuses from completed wonders. Name and bonus appears at side of screen when complete. Either gives a stat boost, or a permanent unique question.
+- Can build structures that last for a few turn and either give a steady supply of resources or temporary stat boosts.
 
 ## Fixes
-- Randomizer still gives multiples of the same question.
 - Inputting a wrong answer still progresses time forward.
 - Every time you answer a question an entirely new prompt pops up.
