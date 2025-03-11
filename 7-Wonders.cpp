@@ -308,7 +308,42 @@ void questionsFunc(){
 // Questions
     class Questions {
     public:
+    string name;
+    int ID;
+    // Booleans
+    bool resUp;
+    bool resUp2;
+    bool resDown;
+    bool resDown2;
+    bool statUpBool;
+    bool statUp2Bool;
+    bool statDownBool;
+    bool statDown2Bool;
+    // Resource Up
+    string resUpStr;
+    string resUpStr2;
+    int resUpInt;
+    int resUpInt2;
+    int resUpMod;
+    int resUpMod2;
+    // Resource Down
+    string resDownStr;
+    string resDownStr2;
+    int resDownInt;
+    int resDownInt2;
+    // Stat Up
+    string statUpStr;
+    string statUpStr2;
+    int statUpInt;
+    int statUpInt2;
+    // Stat Down
+    string statDownStr;
+    string statDownStr2;
+    int statDownInt;
+    int statDownInt2;
+    
     string questionText;
+
     void resourceUp(string source, int Inc, int Mod){
         int x = resources[source];
         int y = Inc;
@@ -353,22 +388,143 @@ void questionsFunc(){
 // Questions
     Questions questZero;
         questZero.questionText = "We have an overabundance of stone this week! Spend 20 stone to get 50 gold?";
+        questZero.ID = 0;
+        questZero.resUp = true;
+        questZero.resDown = true;
+        questZero.resUpStr = "gold";
+        questZero.resUpInt = 50;
+        questZero.resUpMod = cunningMod;
+        questZero.resDownStr = "stone";
+        questZero.resDownInt = 20;
     Questions questOne;
         questOne.questionText = "Our miners are well rested after their day off! Spend 10 energy to mine 100 stone?";
+        questOne.ID = 1;
+        questOne.resUp = true;
+        questOne.resDown = true;
+        questOne.resUpStr = "stone";
+        questOne.resUpInt = 100;
+        questOne.resUpMod = leaderMod;
+        questOne.resDownStr = "energy";
+        questOne.resDownInt = 10;
     Questions questTwo;
         questTwo.questionText = "One of your forests has grown enough to be cut! Spend 10 energy to harvest 100 wood?";
+        questTwo.ID = 2;
+        questTwo.resUp = true;
+        questTwo.resDown = true;
+        questTwo.resUpStr = "wood";
+        questTwo.resUpInt = 100;
+        questTwo.resUpMod = intelMod;
+        questTwo.resDownStr = "energy";
+        questTwo.resDownInt = 10;
     Questions questThree;
         questThree.questionText = "A neighboring kingdom has offered a trade deal! Spend 120 gold to get 200 wood?";
+        questThree.ID = 3;
+        questThree.resUp = true;
+        questThree.resDown = true;
+        questThree.resUpStr = "wood";
+        questThree.resUpInt = 200;
+        questThree.resUpMod = intelMod;
+        questThree.resDownStr = "gold";
+        questThree.resDownInt = 120;
     Questions questFour;
         questFour.questionText = "Integrity is worth its weight in gold it seems. Sacrifice 3 leadership for 300 gold?";
+        questFour.ID = 4;
+        questFour.resUp = true;
+        questFour.statDownBool = true;
+        questFour.resUpStr = "gold";
+        questFour.resUpInt = 300;
+        questFour.resUpMod = cunningMod;
+        questFour.statDownStr = "leadership";
+        questFour.statDownInt = 3;
     Questions questFive;
         questFive.questionText ="Your workers promise they will be working harder than ever if you treat them to drinks. Spend 100 gold for 15 energy?";
+        questFive.ID = 5;
+        questFive.resUp = true;
+        questFive.resDown = true;
+        questFive.resUpStr = "energy";
+        questFive.resUpInt = 15;
+        questFive.resUpMod = enduranceMod;
+        questFive.resDownStr = "gold";
+        questFive.resDownInt = 100;
     Questions questSix;
         questSix.questionText ="Your skill in trade is only as good as how much coin you have. Would you like to buy 5 cunning for 500 gold?";
+        questSix.ID = 6;
+        questSix.resDown = true;
+        questSix.statUpBool = true;
+        questSix.resDownStr = "gold";
+        questSix.resDownInt = 500;
+        questSix.statUpStr = "cunning";
+        questSix.statUpInt = 5;
     Questions questSeven;
         questSeven.questionText ="A neighboring kingdom has offered a trade deal! Spend 150 gold to get 220 stone?";
+        questSeven.ID = 7;
+        questSeven.resUp = true;
+        questSeven.resDown = true;
+        questSeven.resUpStr = "stone";
+        questSeven.resUpInt = 220;
+        questSeven.resUpMod = leaderMod;
+        questSeven.resDownStr = "gold";
+        questSeven.resDownInt = 150;
     Questions questEight;
         questEight.questionText = "A local astronomer has made an appearance in court, asking for patronage. Spend 400 gold for 4 intelligence?";
+        questEight.ID = 8;
+        questEight.statUpBool = true;
+        questEight.resDown = true;
+        questEight.resDownStr = "gold";
+        questEight.resDownInt = 400;
+        questEight.statUpStr = "intelligence";
+        questEight.statUpInt = 4;
+    Questions questNine;
+        questNine.questionText = "After a drought in a neighboring kingdom killed off their vegetation, wood is in high demand. Sell 50 wood for 100 gold?";
+        questNine.ID = 9;
+        questNine.resUp = true;
+        questNine.resDown = true;
+        questNine.resUpStr = "gold";
+        questNine.resUpInt = 100;
+        questNine.resUpMod = cunningMod;
+        questNine.resDownStr = "wood";
+        questNine.resDownInt = 50;
+    Questions questTen;
+        questTen.questionText = "Your advisors think a statue in your likeness will set you apart as a ruler. Donate 200 stone for 2 leadership?";
+        questTen.ID = 10;
+        questTen.statUpBool = true;
+        questTen.resDown = true;
+        questTen.statUpStr = "leadership";
+        questTen.statUpInt = 2;
+        questTen.resDownStr = "stone";
+        questTen.resDownInt = 200;
+    Questions questEleven;
+        questEleven.questionText = "There is always more room for money in the bank, and your resources are taking up space. Sell off 50 wood and 50 stone for 200 gold?";
+        questEleven.ID = 11;
+        questEleven.resUp = true;
+        questEleven.resDown = true;
+        questEleven.resDown2 = true;
+        questEleven.resUpStr = "gold";
+        questEleven.resUpInt = 200;
+        questEleven.resUpMod = cunningMod;
+        questEleven.resDownStr = "wood";
+        questEleven.resDownInt = 50;
+        questEleven.resDownStr2 = "stone";
+        questEleven.resDownInt2 = 50;
+    Questions questTwelve;
+        questTwelve.questionText = "A bountiful harvest will ensure more coin passes through your fingers, and encouragement will help. Spend 15 energy for 150 gold?";
+        questTwelve.ID = 12;
+        questTwelve.resUp = true;
+        questTwelve.resDown = true;
+        questTwelve.resUpStr = "gold";
+        questTwelve.resUpInt = 150;
+        questTwelve.resUpMod = cunningMod;
+        questTwelve.resDownStr = "energy";
+        questTwelve.resDownInt = 15;
+    Questions questThirteen;
+        questThirteen.questionText = "If you work your people extra hard this week, it won't be so difficult the next time. Spend 20 energy to increase endurance by 2?";
+        questThirteen.ID = 13;
+        questThirteen.resDown = true;
+        questThirteen.statUpBool = true;
+        questThirteen.resDownStr = "energy";
+        questThirteen.resDownInt = 20;
+        questThirteen.statUpStr = "endurance";
+        questThirteen.statUpInt = 2;
 
     Questions qArray[] = {
         questZero,
@@ -380,8 +536,14 @@ void questionsFunc(){
         questSix,
         questSeven,
         questEight,
+        questNine,
+        questTen,
+        questEleven,
+        questTwelve,
+        questThirteen
     };
 
+    int qArrayLength = sizeof(qArray)/sizeof(qArray[0]);
 // Character Questions
     Questions questCharacter;
         questCharacter.questionText = uniqueQuest;
@@ -391,15 +553,15 @@ void questionsFunc(){
 
 //Randomizer
     srand(time(0));
-    int randomNum1 = rand()%9;
-    int randomNum2 = rand()%9;
-    int randomNum3 = rand()%9;
+    int randomNum1 = rand()%qArrayLength;
+    int randomNum2 = rand()%qArrayLength;
+    int randomNum3 = rand()%qArrayLength;
 
     while (randomNum2 == randomNum1 || randomNum2 == randomNum3) {
-        randomNum2 = rand()%9;
+        randomNum2 = rand()%14;
     };
     while (randomNum3 == randomNum1 || randomNum3 == randomNum2) {
-        randomNum3 = rand()%9;
+        randomNum3 = rand()%14;
     };
     // if ((randomNum2 == randomNum1) || (randomNum2 == randomNum3) && randomNum2 >0) {
     //     randomNum2-1;
@@ -430,36 +592,117 @@ void questionsFunc(){
 
     cin >> answerVar;
 
-        if (answerVar == 'A' || answerVar == 'a') {
-            if (randomNum1 == 0){
-                questChanger.resourceDown("stone", 20);
-                questChanger.resourceUp("gold", 50, cunningMod);
-            } else if ( randomNum1 == 1) {
-                questChanger.resourceDown("energy", 10);
-                questChanger.resourceUp("stone", 100, leaderMod);
-            } else if ( randomNum1 == 2) {
-                questChanger.resourceDown("energy", 10);
-                questChanger.resourceUp("wood", 100, intelMod);
-            } else if ( randomNum1 == 3) {
-                questChanger.resourceDown("gold", 120);
-                questChanger.resourceUp("wood", 200, intelMod);
-            } else if ( randomNum1 == 4) {
-                questChanger.statDown("leadership", 3);
-                questChanger.resourceUp("gold", 300, cunningMod);
-            } else if ( randomNum1 == 5) {
-                questChanger.resourceDown("gold", 100);
-                questChanger.resourceUp("energy", 15, enduranceMod);
-            } else if ( randomNum1 == 6) {
-                questChanger.resourceDown("gold", 500);
-                questChanger.statUp("cunning",5);
-            } else if (randomNum1 == 7) {
-                questChanger.resourceDown("gold", 150);
-                questChanger.resourceUp("stone", 220, leaderMod);
-            } else if (randomNum1 == 8) {
-                questChanger.resourceDown("gold", 400);
-                questChanger.statUp("intelligence", 4);
-            }
-        } else if ( answerVar == 'B' || answerVar == 'b') {
+
+// class Answers {
+//     public:
+//     int ID;
+//     bool resUp;
+//     bool resUp2;
+//     bool resDown;
+//     bool resDown2;
+//     bool statUp;
+//     bool statUp2;
+//     bool statDown;
+//     bool statDown2;
+//     string resUpStr;
+//     string resUpStr2;
+//     int resUpInt;
+//     int resUpInt2;
+//     string resUpMod;
+//     string resUpMod2;
+//     string resDownStr;
+//     string resDownStr2;
+//     int resDownInt;
+//     int resDownInt2;
+//     string statUpStr;
+//     string statUpStr2;
+//     int statUpInt;
+//     int statUpInt2;
+//     string statDownStr;
+//     string statDownStr2;
+//     int statDownInt;
+//     int statDownInt2;
+// };
+
+if (answerVar == 'A' || answerVar == 'a'){
+    for (int i=0; i<qArrayLength; i++){     
+        if (randomNum1 == qArray[i].ID) {
+           if (qArray[i].resUp){
+        qArray[i].resourceUp(qArray[i].resUpStr, qArray[i].resUpInt, qArray[i].resUpMod);
+           };
+            if (qArray[i].resUp2){
+        qArray[i].resourceUp(qArray[i].resUpStr2, qArray[i].resUpInt2, qArray[i].resUpMod2);
+            };
+            if (qArray[i].resDown) {
+        qArray[i].resourceDown(qArray[i].resDownStr, qArray[i].resDownInt);
+            };
+            if (qArray[i].resDown2){
+        qArray[i].resourceDown(qArray[i].resDownStr2, qArray[i].resDownInt2);
+        };
+            if (qArray[i].statUpBool) {
+        qArray[i].statUp(qArray[i].statUpStr, qArray[i].statUpInt);
+            };
+            if (qArray[i].statUp2Bool){
+        qArray[i].statUp(qArray[i].statUpStr2, qArray[i].statUpInt2);
+        };
+            if (qArray[i].statDownBool) {
+        qArray[i].statDown(qArray[i].statDownStr, qArray[i].statDownInt);
+            };
+            if (qArray[i].statDown2Bool){
+        qArray[i].statDown(qArray[i].statDownStr2, qArray[i].statDownInt2);
+            };
+        }; 
+    };
+};
+    
+
+
+
+
+        // if (answerVar == 'A' || answerVar == 'a') {
+        //     if (randomNum1 == 0){
+        //         questChanger.resourceDown("stone", 20);
+        //         questChanger.resourceUp("gold", 50, cunningMod);
+        //     } else if ( randomNum1 == 1) {
+        //         questChanger.resourceDown("energy", 10);
+        //         questChanger.resourceUp("stone", 100, leaderMod);
+        //     } else if ( randomNum1 == 2) {
+        //         questChanger.resourceDown("energy", 10);
+        //         questChanger.resourceUp("wood", 100, intelMod);
+        //     } else if ( randomNum1 == 3) {
+        //         questChanger.resourceDown("gold", 120);
+        //         questChanger.resourceUp("wood", 200, intelMod);
+        //     } else if ( randomNum1 == 4) {
+        //         questChanger.statDown("leadership", 3);
+        //         questChanger.resourceUp("gold", 300, cunningMod);
+        //     } else if ( randomNum1 == 5) {
+        //         questChanger.resourceDown("gold", 100);
+        //         questChanger.resourceUp("energy", 15, enduranceMod);
+        //     } else if ( randomNum1 == 6) {
+        //         questChanger.resourceDown("gold", 500);
+        //         questChanger.statUp("cunning",5);
+        //     } else if (randomNum1 == 7) {
+        //         questChanger.resourceDown("gold", 150);
+        //         questChanger.resourceUp("stone", 220, leaderMod);
+        //     } else if (randomNum1 == 8) {
+        //         questChanger.resourceDown("gold", 400);
+        //         questChanger.statUp("intelligence", 4);
+        //     } else if (randomNum1 == 9) {
+        //         questChanger.resourceDown("wood", 50);
+        //         questChanger.resourceUp("gold", 100, cunningMod);
+        //     } else if (randomNum1 == 10) {
+        //         questChanger.resourceDown("stone", 200);
+        //         questChanger.statUp("leadership", 2);
+        //     } else if (randomNum1 == 11) {
+        //         questChanger.resourceDown("wood", 50);
+        //         questChanger.resourceDown("stone", 50);
+        //         questChanger.resourceUp("gold", 200, cunningMod);
+        //     } else if (randomNum1 == 12) {
+        //         questChanger.resourceDown("energy", 15);
+        //         questChanger.resourceUp("gold", 150, cunningMod);
+        //     } else if (randomNum1 ==)
+        // } else 
+        if ( answerVar == 'B' || answerVar == 'b') {
             if (randomNum2 == 0){
                 questChanger.resourceDown("stone", 20);
                 questChanger.resourceUp("gold", 50, cunningMod);
@@ -487,6 +730,19 @@ void questionsFunc(){
             } else if (randomNum2 == 8) {
                 questChanger.resourceDown("gold", 400);
                 questChanger.statUp("intelligence", 4);
+            } else if (randomNum2 == 9) {
+                questChanger.resourceDown("wood", 50);
+                questChanger.resourceUp("gold", 100, cunningMod);
+            } else if (randomNum2 == 10) {
+                questChanger.resourceDown("stone", 200);
+                questChanger.statUp("leadership", 2);
+            } else if (randomNum2 == 11) {
+                questChanger.resourceDown("wood", 50);
+                questChanger.resourceDown("stone", 50);
+                questChanger.resourceUp("gold", 200, cunningMod);
+            } else if (randomNum2 == 12) {
+                questChanger.resourceDown("energy", 15);
+                questChanger.resourceUp("gold", 150, cunningMod);
             }
         } else if ( answerVar == 'C' || answerVar == 'c') {
             if (randomNum3 == 0){
@@ -516,6 +772,19 @@ void questionsFunc(){
             } else if (randomNum3 == 8) {
                 questChanger.resourceDown("gold", 400);
                 questChanger.statUp("intelligence", 4);
+            } else if (randomNum3 == 9) {
+                questChanger.resourceDown("wood", 50);
+                questChanger.resourceUp("gold", 100, cunningMod);
+            } else if (randomNum3 == 10) {
+                questChanger.resourceDown("stone", 200);
+                questChanger.statUp("leadership", 2);
+            } else if (randomNum3 == 11) {
+                questChanger.resourceDown("wood", 50);
+                questChanger.resourceDown("stone", 50);
+                questChanger.resourceUp("gold", 200, cunningMod);
+            } else if (randomNum3 == 12) {
+                questChanger.resourceDown("energy", 15);
+                questChanger.resourceUp("gold", 150, cunningMod);
             }
         } else if ( answerVar == 'D' || answerVar == 'd'){
             if (resources["stone"]>=wonderSlot.stoneCost && resources["wood"]>=wonderSlot.woodCost){
