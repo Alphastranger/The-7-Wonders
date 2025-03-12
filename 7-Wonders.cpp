@@ -176,13 +176,13 @@ void wonderSelect(){
         wonUsedLength = sizeof(wonUsed)/sizeof(wonUsed[0]);
     };
     string wonArray[] = {
-        "The_Pyramids",
-        "The_Colossus",
+        "The Pyramids",
+        "The Colossus",
         "Stonehenge",
-        "The_Oracle",
-        "The_Great_Lighthouse",
-        "The_Hanging_Gardens",
-        "The_Great_Wall_of_China"
+        "The Oracle",
+        "The Great Lighthouse",
+        "The Hanging Gardens",
+        "The Great Wall of China"
     };
     vector<string> wonTrueArray;
 
@@ -207,7 +207,10 @@ void wonderSelect(){
     cout << "5. " << wonTrueArray[4] << "\n";
     cout << "6. " << wonTrueArray[5] << "\n";
     cout << "7. " << wonTrueArray[6] << "\n""\n";
-    cin >> wonSelect;
+    // cout <<"selection 1"<< wonSelect<< "\n";
+    cin.ignore();
+    getline(std::cin, wonSelect);
+    // cout <<"selection 2" << wonSelect<< "\n";
     int False = 0;
     for (int i = 0; i<wonArrTotal; i++){
         // cout << wonTrueArray[i] << "\n";
@@ -219,7 +222,7 @@ void wonderSelect(){
             False++;
         };
     };
-    cout << False;
+    // cout << False;
 
     if (False >= wonArrTotal) {
         cout << "\n""Sorry, that is not a valid input! Please try to be exact!""\n";
@@ -240,8 +243,8 @@ void wonderSelect(){
 ///////////////
 
 void startScreen(){
-  leaderMod = (statistics["leadership"]/100);
-  intelMod = (statistics["intelligence"]/100);
+  leaderMod = (statistics["leadership"]/10);
+  intelMod = (statistics["intelligence"]/1);
   cunningMod = (statistics["cunning"]/100);
   enduranceMod = (statistics["endurance"]/100);
         cout << "\n" << charName << "  |  " << "Days Left: " << clockDown << "\n" << "\n";
@@ -255,7 +258,10 @@ void startScreen(){
         cout << "----------------------------------------------"<< "\n";
         cout << "| Energy:" << resources["energy"] << " | Endurance:" << statistics["endurance"] << " |""\n";
         cout << "----------------------------------------------"<< "\n";
-
+        cout << leaderMod<< "\n";
+        cout << intelMod<< "\n";
+        cout << cunningMod<< "\n";
+        cout << enduranceMod<< "\n""\n";
         questionsFunc();
     };
 ///////////////
@@ -267,25 +273,25 @@ void questionsFunc(){
     Wonders wonderSlot;
             wonderSlot.name = Wonder;
 
-    if (wonderSlot.name == "The_Pyramids"){
+    if (wonderSlot.name == "The Pyramids"){
             wonderSlot.stoneCost = 1200;
             wonderSlot.woodCost = 1200;
-    } else if (wonderSlot.name == "The_Colossus"){
+    } else if (wonderSlot.name == "The Colossus"){
             wonderSlot.stoneCost = 1600;
             wonderSlot.woodCost = 800;
     } else if (wonderSlot.name == "Stonehenge"){
             wonderSlot.stoneCost = 2000;
             wonderSlot.woodCost = 400;
-    } else if (wonderSlot.name == "The_Oracle") {
+    } else if (wonderSlot.name == "The Oracle") {
             wonderSlot.stoneCost = 700;
             wonderSlot.woodCost = 1700;
-    } else if (wonderSlot.name == "The_Great_Lighthouse"){
+    } else if (wonderSlot.name == "The Great Lighthouse"){
             wonderSlot.stoneCost = 2000;
             wonderSlot.woodCost = 2400;
-    } else if (wonderSlot.name == "The_Hanging_Gardens"){
+    } else if (wonderSlot.name == "The Hanging Gardens"){
             wonderSlot.stoneCost = 2000;
             wonderSlot.woodCost = 2000;
-    } else if (wonderSlot.name == "The_Great_Wall_of_China"){
+    } else if (wonderSlot.name == "The Great Wall of China"){
             wonderSlot.stoneCost = 3000;
             wonderSlot.woodCost = 1000;
     };
@@ -311,8 +317,8 @@ void questionsFunc(){
     string resUpStr2;
     int resUpInt;
     int resUpInt2;
-    int resUpMod;
-    int resUpMod2;
+    float resUpMod;
+    float resUpMod2;
    
     // Resource Down
     string resDownStr;
@@ -358,10 +364,11 @@ void questionsFunc(){
         resources[source]=sum;
         }
     };
-    void resourceUp(string source, int Inc, int Mod){
+    void resourceUp(string source, int Inc, float Mod){
         int x = resources[source];
         int y = Inc;
-        int z = Mod;
+        float z = Mod;
+        cout << "ModMod: " << Mod<<"\n";
         cout << "Mod Value: "<<z<<"\n";
         int sum = x + y + (y * z);
         float sum2 = x + y + (y*z);
@@ -370,7 +377,8 @@ void questionsFunc(){
         cout << "Sum2: "<< sum2<<"\n";
         cout << "Sum3: "<< sum3<<"\n";
         float inAction = (y*z);
-        cout << "The modifier in action: "<<inAction <<"\n";
+        float buttKiss = 3.13;
+        cout << "The modifier in action: "<<inAction<< "+" << buttKiss <<"\n";
         resources[source]=sum;
     };
     void statUp(string source, int Inc){
