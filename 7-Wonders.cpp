@@ -267,7 +267,7 @@ void startScreen(){
 ///////////////
 //Questions
 ///////////////
-
+char answerVar;
 void questionsFunc(){ 
     // Wonders
     Wonders wonderSlot;
@@ -391,7 +391,7 @@ void questionsFunc(){
     string questionText;
 };
 
-    char answerVar;
+    
 
 // Question List
     Questions questZero;
