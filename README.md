@@ -3,22 +3,22 @@ A simple application designed around building wonders before time runs out.
 
 ## Version 1.0
 ### Future Changes
-- Energy is calculated by endurance.
 - Add additional characters.
-- Bonuses from completed wonders. Name and bonus appears at side of screen when complete. Either gives a stat boost, or a permanent unique question.
-- Can build structures that last for a few turn and either give a steady supply of resources or temporary stat boosts.
 ### Fixes
-- Inputting a wrong answer still progresses time forward.
 - Every time you answer a question an entirely new prompt pops up.
+- Upon building a wonder, the wonder menu does not reappear.
 ### Potential Changes
 - Points to modify stats at game start, perhaps with two random options of what to increase.
 - Modifier points have increasing costs the higher the stat.
 
+
 ## VERSION 1.1
 ### Changes
+- Bonuses from completed wonders. Name and bonus appears at side of screen when complete. Either gives a stat boost, or a permanent unique question.
 - Wonders now have a third requirement, usually luxuries, science, food, or faith.
 - Wonders also should denote their cost at the select screen.
 - Leader chooses religion at game start (Each one changes how temples work).
+- Can build structures that last for a few turn and either give a steady supply of resources or temporary stat boosts.
 ### Advisors
 - At all times can hire a governor, engineer, and/or consort to give various stat buffs.
 - Each are part of a randomized pool that they are selected from at the start of the game.
@@ -46,4 +46,3 @@ A simple application designed around building wonders before time runs out.
     - Increases faith gain.
 - New Stats: Fertility:
     - Increases food gain.
-

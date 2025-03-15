@@ -13,6 +13,7 @@ int gold;
 int stone;
 int wood;
 int energy;
+bool resourceFail;
 // Stats:
 string charName;
 map<string, int> statistics;
@@ -24,6 +25,7 @@ int cunning;
 float cunningMod;
 int endurance;
 float enduranceMod;
+bool statFail;
 // Wonders:
 class Wonders {
     public:
@@ -58,12 +60,17 @@ void startScreen();
 void questionsFunc();
 void wonderSelect();
 
+char answerVar;
+
+
 ///////////////
 // Count Down
 ///////////////
 
 void clockTicker(){
-        clockDown -= 7;
+        if (statFail == false && resourceFail == false){
+            clockDown -= 7;
+        }
         if (clockDown > 0) {
             startScreen();
         } else {
@@ -208,7 +215,10 @@ void wonderSelect(){
     cout << "6. " << wonTrueArray[5] << "\n";
     cout << "7. " << wonTrueArray[6] << "\n""\n";
     // cout <<"selection 1"<< wonSelect<< "\n";
+
+    ///////////////// See if this line needs changing to fix wonders
     cin.ignore();
+    /////////////
     getline(std::cin, wonSelect);
     // cout <<"selection 2" << wonSelect<< "\n";
     int False = 0;
@@ -267,33 +277,49 @@ void startScreen(){
 ///////////////
 //Questions
 ///////////////
-char answerVar;
-void questionsFunc(){ 
+
+void questionsFunc(){
+    resourceFail = false;
+    statFail = false;
     // Wonders
     Wonders wonderSlot;
             wonderSlot.name = Wonder;
 
     if (wonderSlot.name == "The Pyramids"){
-            wonderSlot.stoneCost = 1200;
-            wonderSlot.woodCost = 1200;
+            // wonderSlot.stoneCost = 1200;
+            // wonderSlot.woodCost = 1200;
+            wonderSlot.stoneCost = 1;
+            wonderSlot.woodCost = 1;
     } else if (wonderSlot.name == "The Colossus"){
-            wonderSlot.stoneCost = 1600;
-            wonderSlot.woodCost = 800;
+            // wonderSlot.stoneCost = 1600;
+            // wonderSlot.woodCost = 800;
+            wonderSlot.stoneCost = 1;
+            wonderSlot.woodCost = 1;
     } else if (wonderSlot.name == "Stonehenge"){
-            wonderSlot.stoneCost = 2000;
-            wonderSlot.woodCost = 400;
+            // wonderSlot.stoneCost = 2000;
+            // wonderSlot.woodCost = 400;
+            wonderSlot.stoneCost = 1;
+            wonderSlot.woodCost = 1;
     } else if (wonderSlot.name == "The Oracle") {
-            wonderSlot.stoneCost = 700;
-            wonderSlot.woodCost = 1700;
+            // wonderSlot.stoneCost = 700;
+            // wonderSlot.woodCost = 1700;
+            wonderSlot.stoneCost = 1;
+            wonderSlot.woodCost = 1;
     } else if (wonderSlot.name == "The Great Lighthouse"){
-            wonderSlot.stoneCost = 2000;
-            wonderSlot.woodCost = 2400;
+            // wonderSlot.stoneCost = 2000;
+            // wonderSlot.woodCost = 2400;
+            wonderSlot.stoneCost = 1;
+            wonderSlot.woodCost = 1;
     } else if (wonderSlot.name == "The Hanging Gardens"){
-            wonderSlot.stoneCost = 2000;
-            wonderSlot.woodCost = 2000;
+            // wonderSlot.stoneCost = 2000;
+            // wonderSlot.woodCost = 2000;
+            wonderSlot.stoneCost = 1;
+            wonderSlot.woodCost = 1;
     } else if (wonderSlot.name == "The Great Wall of China"){
-            wonderSlot.stoneCost = 3000;
-            wonderSlot.woodCost = 1000;
+            // wonderSlot.stoneCost = 3000;
+            // wonderSlot.woodCost = 1000;
+             wonderSlot.stoneCost = 1;
+            wonderSlot.woodCost = 1;
     };
 
 ///////////
@@ -348,6 +374,7 @@ void questionsFunc(){
         cout << sum << "SUM""\n";
         if (sum<0) {
             cout << "\n""INVALID STATS"<<"\n";
+            statFail=true;
             clockTicker();
         }else {
         statistics[source]=sum;
@@ -359,6 +386,7 @@ void questionsFunc(){
         int sum = x - y;
         if (sum<0) {
             cout << "\n""INVALID RESOURCES"<<"\n";
+            resourceFail = true;
             clockTicker();
         } else {
         resources[source]=sum;
@@ -570,10 +598,6 @@ void questionsFunc(){
         questCharacter.questionText = uniqueQuest;
 
 //Randomizer
-    // srand(time(0));
-    // int randomNum1 = rand()%qArrayLength;
-    // int randomNum2 = rand()%qArrayLength;
-    // int randomNum3 = rand()%qArrayLength;
 
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -706,7 +730,7 @@ if (answerVar == 'A' || answerVar == 'a'){
                 int woodSum = g-h;
                 resources["wood"]=woodSum;
 
-                cout << "\n"<< "You have constructed" + wonderSlot.name + "! Look upon your works with pride, for you are a lion amongst sheep!" << "\n"<<"\n"<<"\n";
+                cout << "\n"<< "You have constructed " + wonderSlot.name + "! Look upon your works with pride, for you are a lion amongst sheep!" << "\n"<<"\n"<<"\n";
                 "Time Restored";
                 clockDown += 100;
                 wonderSelect();
