@@ -63,6 +63,7 @@ void wonderSelect();
 char answerVar;
 
 
+
 ///////////////
 // Count Down
 ///////////////
@@ -83,12 +84,16 @@ void clockTicker(){
 ///////////////
 void characterSelect(){
     string charNameInput;
-    cout << "-----7 WONDERS-----"<<"\n""\n";
+    cout << "----- Jay Flynn's 7 WONDERS-----"<<"\n""\n";
     cout << "Type in their name to select your character" << "\n";
     cout << "1. Hadrian" << "\n";
     cout << " A wise and steady emperor of Rome. Gifted in Leadership and stoneworking." << "\n";
     cout << "2. Nefertiti" << "\n";
     cout << " The wife of Akhenaten who famously pushed Egypt towards monotheism. Gifted in Cunning and tithes." << "\n";
+    cout << "3. Boudicca" << "\n";
+    cout << " A Celtic warrior who fought back against the great empire of Rome as it lapped at Britannia's shores and tore up its people.""\n";
+    cout << "4. Chandragupta Maurya" << "\n";
+    cout << " The closest the South Asian people would come to true unification before the 20th century was the grand conquest of Maurya, as he reclaimed India for Indians.""\n";
     cout << "\n""\n";
     // An ancient chinese and indian leader
     //Chandragupta Maurya
@@ -132,7 +137,7 @@ void hadrianStart(){
     uniqueQuest = Hadrian.Quest;
     hadrianBool = true;
     //Later we want energy to be calculated off the endurance stat
-    cout << "\n""Ave imperator Emperor Hadrian! Welcome to 7 Wonders!"<<"\n""\n";
+    cout << "\n""Ave imperator Hadrian! Welcome to Jay Flynn's 7 Wonders!"<<"\n""\n";
     cout << "In this game, you must race to complete all seven world wonders before the time runs out!""\n";
     wonderSelect();
 };
@@ -164,7 +169,7 @@ void nefertitiStart(){
     resources["energy"] = Nefertiti.startEnergy;
     uniqueQuest = Nefertiti.Quest;
     nefertitiBool = true;
-    cout << "\n""Blessings upon you great Queen of the Nile! Welcome to 7 Wonders!"<<"\n""\n";
+    cout << "\n""Blessings upon you great Queen of the Nile! Welcome to Jay Flynn's 7 Wonders!"<<"\n""\n";
     cout << "In this game, you must race to complete all seven world wonders before the time runs out!""\n";
     wonderSelect();
 }
@@ -173,15 +178,20 @@ void nefertitiStart(){
 // Wonder Select
 ///////////////
 
+vector<string> wonUsed;
+int wonUsedLength=0;
+
 void wonderSelect(){
    
-    vector<string> wonUsed;
-    int wonUsedLength;
-        if (wonArrTotal == 7) {
-            wonUsedLength=0;
-        } else {
-        wonUsedLength = sizeof(wonUsed)/sizeof(wonUsed[0]);
-    };
+    cout << "Test Spot 1""\n";
+    cout << "wonArrTotal: "<<wonArrTotal << "\n";
+    
+    
+    //     if (wonArrTotal != 7) {
+    //     //     wonUsedLength=0;
+    //     // } else {
+    //     // // wonUsedLength = sizeof(wonUsed)/sizeof(wonUsed[0]);
+    // };
     string wonArray[] = {
         "The Pyramids",
         "The Colossus",
@@ -191,36 +201,56 @@ void wonderSelect(){
         "The Hanging Gardens",
         "The Great Wall of China"
     };
+
+    cout << "wonUsedLength: " <<wonUsedLength<< "\n";
+
     vector<string> wonTrueArray;
 
-    for (int i=0; i<wonArrTotal; i++){
+    for (int i=0, j=0; i<wonArrTotal; i++, j++){
         if (wonUsedLength==0){
             wonTrueArray.push_back(wonArray[i]);
         } else {
-        for (int j=0; i<wonUsedLength-1; j++){
-        if (wonArray[i]!=wonUsed[j]){
-        wonTrueArray.push_back(wonArray[i]);
+            if (wonArray[i]!=wonUsed[j]){
+            wonTrueArray.push_back(wonArray[i]);
+            // if (wonArray[i]!=wonUsed[0] && wonArray[i]!=wonUsed[1] && wonArray[i]!=wonUsed[2] && wonArray[i]!=wonUsed[3] && wonArray[i]!=wonUsed[4] && wonArray[i]!=wonUsed[5] && wonArray[i]!=wonUsed[6]){
+            //     wonTrueArray.push_back(wonArray[i]);
+            // };
+            };
         };
-        };
-        };
+    ;} 
+    // for (int j=0; j<wonUsedLength; j++){
+    //         if (wonArray[i]!=wonUsed[j]){
+    //         wonTrueArray.push_back(wonArray[i]);
+    //         };
+    //     };
+    for (int i=0; i<wonArrTotal; i++){
+       cout << "The One True Array: " << wonTrueArray[i]<<"\n"; 
     };
-
+    
     string wonSelect;
     cout << "Please type the name of a wonder to build""\n""\n";
-    cout << "1. " << wonTrueArray[0] << "\n";
-    cout << "2. " << wonTrueArray[1] << "\n";
-    cout << "3. " << wonTrueArray[2] << "\n";
-    cout << "4. " << wonTrueArray[3] << "\n";
-    cout << "5. " << wonTrueArray[4] << "\n";
-    cout << "6. " << wonTrueArray[5] << "\n";
-    cout << "7. " << wonTrueArray[6] << "\n""\n";
-    // cout <<"selection 1"<< wonSelect<< "\n";
 
-    ///////////////// See if this line needs changing to fix wonders
+    cout << "Problem Spot!""\n";
+
+    // ISSUE IS THAT THE PUSH_BACK FUNCTIONALITY TO REPOPULATE THE WONTRUEARRAY ISN'T WORKING AND THE GAME IS CRASHING
+
+    for (int i=0; i<wonArrTotal; i++){
+        cout << i+1<<". "<< wonTrueArray[i] << "\n";
+        cout << "\n";
+    };
+    // cout << "1. " << wonTrueArray[0] << "\n";
+    // cout << "2. " << wonTrueArray[1] << "\n";
+    // cout << "3. " << wonTrueArray[2] << "\n";
+    // cout << "4. " << wonTrueArray[3] << "\n";
+    // cout << "5. " << wonTrueArray[4] << "\n";
+    // cout << "6. " << wonTrueArray[5] << "\n";
+    // cout << "7. " << wonTrueArray[6] << "\n""\n";
+
+    // cout <<"selection 1"<< wonSelect<< "\n";
     cin.ignore();
-    /////////////
     getline(std::cin, wonSelect);
     // cout <<"selection 2" << wonSelect<< "\n";
+    cout << "False Start""\n";
     int False = 0;
     for (int i = 0; i<wonArrTotal; i++){
         // cout << wonTrueArray[i] << "\n";
@@ -233,18 +263,30 @@ void wonderSelect(){
         };
     };
     // cout << False;
-
+    cout << "If statements start""\n";
     if (False >= wonArrTotal) {
         cout << "\n""Sorry, that is not a valid input! Please try to be exact!""\n";
         wonderSelect();
     } else {
         Wonder = wonSelect;
     };
+    cout << "For Loop starts""\n";
+    cout << "wonSelect Variable: " << wonSelect<<"\n";
+
+    wonUsed.push_back(wonSelect);
+
     for (int i=0; i<wonArrTotal; i++){
         wonTrueArray.pop_back();
     };
+
     wonArrTotal--;
-    
+    wonUsedLength++;
+    cout << "Just at the change over""\n";
+
+    for (int i=0; i<=wonUsedLength-1; i++){
+        cout << "Used Wonders: " << wonUsed[i]<< "\n";
+    };
+    cout << "Is this thing on?""\n";
     startScreen();
 }
 
@@ -731,12 +773,13 @@ if (answerVar == 'A' || answerVar == 'a'){
                 resources["wood"]=woodSum;
 
                 cout << "\n"<< "You have constructed " + wonderSlot.name + "! Look upon your works with pride, for you are a lion amongst sheep!" << "\n"<<"\n"<<"\n";
-                "Time Restored";
+                cout << "Time Restored""\n""\n";
                 clockDown += 100;
-                wonderSelect();
 
-                if (wonArrTotal==1){
-                cout<< "\n""Congratulations! You completed all seven wonders! You have made your people proud, and established a legacy that will last throughout the ages!";
+                cout << "Test Spot 2""\n";
+
+                if (wonArrTotal==0){
+                cout<< "\n""Congratulations! You completed all seven wonders! You have made your people proud, and established a legacy that will last throughout the ages!""\n";
                 cout << "Type 'end' to end game"<< "\n";
                     string endVar;
                     cin >> endVar;
@@ -747,7 +790,9 @@ if (answerVar == 'A' || answerVar == 'a'){
                     cout << "\n""Bye!";
                     exit(0);
                 };
-            }
+                }else {
+                    wonderSelect();
+                };
             } else {
                 cout << "You lack the necessary resources. Pick a different choice."<< "\n";
                 cin.clear();
