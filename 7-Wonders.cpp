@@ -53,12 +53,17 @@ class Characters {
 string uniqueQuest;
 bool hadrianBool;
 bool nefertitiBool;
+bool boudiccaBool;
+bool chandraguptaBool;
 // Function Declarations
 void hadrianStart();
 void nefertitiStart();
+void boudiccaStart();
+void chandraguptaStart();
 void startScreen();
 void questionsFunc();
 void wonderSelect();
+int main();
 
 char answerVar;
 
@@ -92,18 +97,20 @@ void characterSelect(){
     cout << " The wife of Akhenaten who famously pushed Egypt towards monotheism. Gifted in Cunning and tithes." << "\n";
     cout << "3. Boudicca" << "\n";
     cout << " A Celtic warrior who fought back against the great empire of Rome as it lapped at Britannia's shores and tore up its people.""\n";
-    cout << "4. Chandragupta Maurya" << "\n";
-    cout << " The closest the South Asian people would come to true unification before the 20th century was the grand conquest of Maurya, as he reclaimed India for Indians.""\n";
+    cout << "4. Chandragupta" << "\n";
+    cout << " The closest the South Asian people would come to true unification before the 20th century was the grand conquest of Maurya, as he reclaimed India from the Greeks.""\n";
     cout << "\n""\n";
-    // An ancient chinese and indian leader
-    //Chandragupta Maurya
-    //Not necessarily a ruler, but an influential woman
+
     cin >> charNameInput;
     cin.ignore();
     if (charNameInput == "Hadrian" || charNameInput == "hadrian"){
         hadrianStart();
     } else if (charNameInput == "Nefertiti" || charNameInput == "nefertiti") {
         nefertitiStart();
+    } else if (charNameInput == "Boudicca" || charNameInput == "boudicca"){
+        boudiccaStart();
+    } else if (charNameInput == "Chandragupta" || charNameInput == "chandragupta"){
+        chandraguptaStart();
     } else {
         cout << "Please put in the correct name"<< "\n";
         characterSelect();
@@ -119,7 +126,7 @@ void hadrianStart(){
         Hadrian.name = "Hadrian";
         Hadrian.startLead = 4;
         Hadrian.startInt = 2;
-        Hadrian.startCun = 1;
+        Hadrian.startCun = 2;
         Hadrian.startEnd = 4;
         Hadrian.startGold = 300;
         Hadrian.startStone = 300;
@@ -176,6 +183,69 @@ void nefertitiStart(){
 }
 
 ///////////////
+// Boudicca Start
+///////////////
+
+void boudiccaStart(){
+    Characters Boudicca;
+        Boudicca.name = "Boudicca";
+        Boudicca.startLead = 3;
+        Boudicca.startInt = 6;
+        Boudicca.startCun = 0;
+        Boudicca.startEnd = 2;
+        Boudicca.startGold = 0;
+        Boudicca.startStone = 200;
+        Boudicca.startWood = 400;
+        Boudicca.startEnergy = 10;
+        Boudicca.Quest = "Roman patrols have been spotted nearby; assail them at the cost of 400 wood to earn 3 leadership?";
+    charName = Boudicca.name;
+    statistics["leadership"] = Boudicca.startLead;
+    statistics["intelligence"] = Boudicca.startInt;
+    statistics["cunning"] = Boudicca.startCun;
+    statistics["endurance"] = Boudicca.startEnd;
+    resources["gold"]= Boudicca.startGold;
+    resources["stone"] = Boudicca.startStone;
+    resources["wood"] = Boudicca.startWood;
+    resources["energy"] = Boudicca.startEnergy;
+    uniqueQuest = Boudicca.Quest;
+    boudiccaBool = true;
+    cout << "\n""Hail Queen of the Celts and Ireland's protector! Welcome to Jay Flynn's 7 Wonders!"<<"\n""\n";
+    cout << "In this game, you must race to complete all seven world wonders before the time runs out!""\n";
+    wonderSelect();
+};
+///////////////
+// Chandragupta Start
+///////////////
+
+void chandraguptaStart(){
+    Characters Chandragupta;
+        Chandragupta.name = "Chandragupta";
+        Chandragupta.startLead = 2;
+        Chandragupta.startInt = 3;
+        Chandragupta.startCun = 2;
+        Chandragupta.startEnd = 3;
+        Chandragupta.startGold = 100;
+        Chandragupta.startStone = 100;
+        Chandragupta.startWood = 200;
+        Chandragupta.startEnergy = 15;
+        Chandragupta.Quest = "You are a budding flower, Chandragupta Maurya; pray and learn at the cost of 20 energy and 100 gold to gain 1 cunning and 1 endurance?";
+    charName = Chandragupta.name;
+    statistics["leadership"] = Chandragupta.startLead;
+    statistics["intelligence"] = Chandragupta.startInt;
+    statistics["cunning"] = Chandragupta.startCun;
+    statistics["endurance"] = Chandragupta.startEnd;
+    resources["gold"]= Chandragupta.startGold;
+    resources["stone"] = Chandragupta.startStone;
+    resources["wood"] = Chandragupta.startWood;
+    resources["energy"] = Chandragupta.startEnergy;
+    uniqueQuest = Chandragupta.Quest;
+    chandraguptaBool = true;
+    cout << "\n""Strength to you, O' warrior king and savior of India! Welcome to Jay Flynn's 7 Wonders!"<<"\n""\n";
+    cout << "In this game, you must race to complete all seven world wonders before the time runs out!""\n";
+    wonderSelect();
+};
+
+///////////////
 // Wonder Select
 ///////////////
 class wonderHell{
@@ -184,15 +254,12 @@ class wonderHell{
     bool isItUsed;
 };
 wonderHell wonArray[7];
-// map<int, string> wonUsed;
 int wonUsedLength=0;
 int wonArrTotal=7;
 vector<string> wonTrueArray;
 bool arrSample[7]={false,false,false,false,false,false,false};
-void wonderSelect(){
 
-    cout << "wonArrTotal: "<<wonArrTotal << "\n";
-    cout << "wonUsedLength: " <<wonUsedLength<< "\n";
+void wonderSelect(){
     
     wonderHell Pyramids;
         Pyramids.wonderName= "The Pyramids";
@@ -224,49 +291,11 @@ void wonderSelect(){
         Gardens, 
         greatWall
     };
-    /////THIS FUCKING FOR LOOP IS KILLING ME
     if (wonUsedLength==0){
         for(int i=0; i<wonArrTotal; i++){
             wonTrueArray.push_back(wonArray[i].wonderName);
         };
-    };
-    for (int i=0; i<7; i++){
-    cout << "isitUsed: "<< wonArray[0].isItUsed << "\n";
-    };
-    // for (int i=0, j=0; i<wonArrTotal; i++, j++){
-    //         cout<< "\n""wonArray[i] " << wonArray[i];
-    //         cout<< "\n""wonUsed[j] " << wonUsed[j]<< "\n";
-    //             string* result0 = std::find(std::begin(wonUsed), std::end(wonUsed), "The Pyramids");
-    //             string* result1 = std::find(std::begin(wonUsed), std::end(wonUsed), "The Colossus");
-    //             if (wonUsedLength==0){
-    //             wonTrueArray.push_back(wonArray[i]);
-    //             }else if (wonArray[i]==wonUsed[j]){
-    //             cout << "\n""Gimme Some Truth!""\n";
-    //             continue;
-    //             } else if (wonArray[i] != wonUsed[j]){
-    //             wonTrueArray.push_back(wonArray[i]);
-    //             };
-    // };
-    // MAYBE IT ISN'T THAT THINGS ARENT WORKING, BUT THAT AT THE THIRD ITERATION NOTHING IS RESETTING
-
-        // } else {
-            
-            // if (wonArray[i]!=wonUsed[j]){
-            // wonTrueArray.push_back(wonArray[i]);
-            // // if (wonArray[i]!=wonUsed[0] && wonArray[i]!=wonUsed[1] && wonArray[i]!=wonUsed[2] && wonArray[i]!=wonUsed[3] && wonArray[i]!=wonUsed[4] && wonArray[i]!=wonUsed[5] && wonArray[i]!=wonUsed[6]){
-            // //     wonTrueArray.push_back(wonArray[i]);
-            // // };
-            // };
-    // for (int j=0; j<wonUsedLength; j++){
-    //         if (wonArray[i]!=wonUsed[j]){
-    //         wonTrueArray.push_back(wonArray[i]);
-    //         };
-    //     };
-
-    for (int i=0; i<wonArrTotal; i++){
-       cout << "The One True Array: " << wonTrueArray[i]<<"\n"; 
-    };
-    
+    };    
     string wonSelect;
 
     cout << "Please type the name of a wonder to build""\n""\n";
@@ -275,26 +304,13 @@ void wonderSelect(){
         cout << i+1<<". "<< wonTrueArray[i] << "\n";
         cout << "\n";
     };
-    // cout << "1. " << wonTrueArray[0] << "\n";
-    // cout << "2. " << wonTrueArray[1] << "\n";
-    // cout << "3. " << wonTrueArray[2] << "\n";
-    // cout << "4. " << wonTrueArray[3] << "\n";
-    // cout << "5. " << wonTrueArray[4] << "\n";
-    // cout << "6. " << wonTrueArray[5] << "\n";
-    // cout << "7. " << wonTrueArray[6] << "\n""\n";
-
-    // cout <<"selection 1"<< wonSelect<< "\n";
     cin.clear();
     getline(std::cin, wonSelect);
-    // cout <<"selection 2" << wonSelect<< "\n"
-
-    //Try making this a separate function again.
     int False = 0;
 
     for (int i = 0; i<wonArrTotal; i++){
         if (wonSelect!=wonTrueArray[i]){
             False++;
-        } else if (wonSelect == wonTrueArray[i]){
         };
     };
     if (False >= wonArrTotal) {
@@ -304,39 +320,20 @@ void wonderSelect(){
         Wonder = wonSelect;
     };
 
-    cout << "wonSelect Variable: " << wonSelect<<"\n";
-
-    // wonUsed[wonUsedLength] = wonSelect;
-
-    // wonUsed.push_back(wonSelect);
     wonTrueArray.clear();
-    // for (int i=0; i<wonArrTotal; i++){
-    //     wonTrueArray.pop_back();
-    // };
-
     for (int i=0; i<7; i++){
         if (wonArray[i].wonderName==wonSelect){
             arrSample[i]=true;
-            wonArray[i].isItUsed=true;
-            cout << "I true: "<<wonArray[i].wonderName << " "<< wonArray[i].isItUsed<<"\n";   
+            wonArray[i].isItUsed=true; 
         };
     };
     for (int i=0, j=0; j<wonArrTotal, i<7;j++, i++){
-        cout << "All the facts: "<<wonArray[i].wonderName<<" "<<wonArray[i].isItUsed<<"\n";
         if (wonArray[i].isItUsed!=true){
             wonTrueArray.push_back(wonArray[i].wonderName);
         };
     };
-    for (int i=0; i<wonArrTotal; i++){
-        cout << "Won True Array End: " << wonTrueArray[i] << "\n";
-    };
     wonArrTotal--;
     wonUsedLength++;
-    
-
-    // for (int i=0; i<=wonUsedLength-1; i++){
-    //     cout << "Used Wonders: " << wonUsed[i]<< "\n";
-    // };
     startScreen();
 };
 
@@ -345,10 +342,10 @@ void wonderSelect(){
 ///////////////
 
 void startScreen(){
-  leaderMod = (statistics["leadership"]/10);
-  intelMod = (statistics["intelligence"]/1);
-  cunningMod = (statistics["cunning"]/100);
-  enduranceMod = (statistics["endurance"]/100);
+  leaderMod = (statistics["leadership"]);
+  intelMod = (statistics["intelligence"]);
+  cunningMod = (statistics["cunning"]);
+  enduranceMod = (statistics["endurance"]);
         cout << "\n" << charName << "  |  " << "Days Left: " << clockDown << "\n" << "\n";
         cout << "Resources:   " << "Stats:" << "\n";
         cout << "----------------------------------------------"<< "\n";
@@ -360,10 +357,6 @@ void startScreen(){
         cout << "----------------------------------------------"<< "\n";
         cout << "| Energy:" << resources["energy"] << " | Endurance:" << statistics["endurance"] << " |""\n";
         cout << "----------------------------------------------"<< "\n";
-        cout << leaderMod<< "\n";
-        cout << intelMod<< "\n";
-        cout << cunningMod<< "\n";
-        cout << enduranceMod<< "\n""\n";
         questionsFunc();
     };
 ///////////////
@@ -378,40 +371,26 @@ void questionsFunc(){
             wonderSlot.name = Wonder;
 
     if (wonderSlot.name == "The Pyramids"){
-            // wonderSlot.stoneCost = 1200;
-            // wonderSlot.woodCost = 1200;
-            wonderSlot.stoneCost = 1;
-            wonderSlot.woodCost = 1;
+            wonderSlot.stoneCost = 1200;
+            wonderSlot.woodCost = 1200;
     } else if (wonderSlot.name == "The Colossus"){
-            // wonderSlot.stoneCost = 1600;
-            // wonderSlot.woodCost = 800;
-            wonderSlot.stoneCost = 1;
-            wonderSlot.woodCost = 1;
+            wonderSlot.stoneCost = 1600;
+            wonderSlot.woodCost = 800;
     } else if (wonderSlot.name == "Stonehenge"){
-            // wonderSlot.stoneCost = 2000;
-            // wonderSlot.woodCost = 400;
-            wonderSlot.stoneCost = 1;
-            wonderSlot.woodCost = 1;
+            wonderSlot.stoneCost = 2000;
+            wonderSlot.woodCost = 400;
     } else if (wonderSlot.name == "The Oracle") {
-            // wonderSlot.stoneCost = 700;
-            // wonderSlot.woodCost = 1700;
-            wonderSlot.stoneCost = 1;
-            wonderSlot.woodCost = 1;
+            wonderSlot.stoneCost = 700;
+            wonderSlot.woodCost = 1700;
     } else if (wonderSlot.name == "The Great Lighthouse"){
-            // wonderSlot.stoneCost = 2000;
-            // wonderSlot.woodCost = 2400;
-            wonderSlot.stoneCost = 1;
-            wonderSlot.woodCost = 1;
+            wonderSlot.stoneCost = 1500;
+            wonderSlot.woodCost = 1800;
     } else if (wonderSlot.name == "The Hanging Gardens"){
-            // wonderSlot.stoneCost = 2000;
-            // wonderSlot.woodCost = 2000;
-            wonderSlot.stoneCost = 1;
-            wonderSlot.woodCost = 1;
+            wonderSlot.stoneCost = 2000;
+            wonderSlot.woodCost = 2000;
     } else if (wonderSlot.name == "The Great Wall of China"){
-            // wonderSlot.stoneCost = 3000;
-            // wonderSlot.woodCost = 1000;
-             wonderSlot.stoneCost = 1;
-            wonderSlot.woodCost = 1;
+            wonderSlot.stoneCost = 3000;
+            wonderSlot.woodCost = 500;
     };
 
 ///////////
@@ -459,11 +438,8 @@ void questionsFunc(){
     // Modifiers
     void statDown(string source, int Dec){
         int x = statistics[source];
-        cout << x << "X""\n";
         int y = Dec;
-        cout << y << "Y""\n";
         int sum = x - y;
-        cout << sum << "SUM""\n";
         if (sum<0) {
             cout << "\n""INVALID STATS"<<"\n";
             statFail=true;
@@ -482,23 +458,13 @@ void questionsFunc(){
             clockTicker();
         } else {
         resources[source]=sum;
-        }
+        };
     };
     void resourceUp(string source, int Inc, float Mod){
         int x = resources[source];
         int y = Inc;
         float z = Mod;
-        cout << "ModMod: " << Mod<<"\n";
-        cout << "Mod Value: "<<z<<"\n";
-        int sum = x + y + (y * z);
-        float sum2 = x + y + (y*z);
-        float sum3 = (y*z) + y + x;
-        cout << "Sum: "<< sum<<"\n";
-        cout << "Sum2: "<< sum2<<"\n";
-        cout << "Sum3: "<< sum3<<"\n";
-        float inAction = (y*z);
-        float buttKiss = 3.13;
-        cout << "The modifier in action: "<<inAction<< "+" << buttKiss <<"\n";
+        int sum = x + y + ((z/y)*100);
         resources[source]=sum;
     };
     void statUp(string source, int Inc){
@@ -663,6 +629,16 @@ void questionsFunc(){
         questFourteen.resUpMod = leaderMod;
         questFourteen.statDownStr = "intelligence";
         questFourteen.statDownInt = 4;
+    Questions questFifteen;
+        questFifteen.questionText = "A nearby satrapy has a dearth of wood this year despite ambitions to build. Exchange 100 wood for 100 stone?";
+        questFifteen.ID = 15;
+        questFifteen.resUp = true;
+        questFifteen.resDown = true;
+        questFifteen.resUpStr = "stone";
+        questFifteen.resUpInt = 100;
+        questFifteen.resUpMod = leaderMod;
+        questFifteen.resDownStr = "wood";
+        questFifteen.resDownInt = 100;
 
     
     Questions qArray[] = {
@@ -681,6 +657,7 @@ void questionsFunc(){
         questTwelve,
         questThirteen,
         questFourteen,
+        questFifteen,
     };
 
     int qArrayLength = sizeof(qArray)/sizeof(qArray[0]);
@@ -827,14 +804,17 @@ if (answerVar == 'A' || answerVar == 'a'){
                 clockDown += 100;
                 if (wonArrTotal==0){
                 cout<< "\n""Congratulations! You completed all seven wonders! You have made your people proud, and established a legacy that will last throughout the ages!""\n";
-                cout << "Type 'end' to end game"<< "\n";
+                cout << "Type 'end' to end game, or 'again' to replay"<< "\n";
                     string endVar;
                     cin >> endVar;
-                if (endVar != "end"){
-                    cout << "\n""Close enough!";
+                if (endVar == "again" || endVar == "Again"){
+                    cout << "\n""Let's go again!""\n";
+                    main();
+                } else if (endVar == "end" || endVar == "End"){
+                    cout << "\n""Bye!""\n";
                     exit(0);
                 } else {
-                    cout << "\n""Bye!";
+                    cout << "\n""Not quite what we were looking for, but we think it is time to go!""\n";
                     exit(0);
                 };
                 }else {
@@ -851,7 +831,15 @@ if (answerVar == 'A' || answerVar == 'a'){
                 
         } else if ( answerVar == 'E' || answerVar == 'e' && nefertitiBool==true){ 
                 questCharacter.resourceDown("energy", 10);
-                questCharacter.resourceUp("gold", 200, cunningMod);                
+                questCharacter.resourceUp("gold", 200, cunningMod); 
+        } else if ( answerVar == 'E' || answerVar == 'e' && boudiccaBool==true){
+                questCharacter.resourceDown("wood", 400);
+                questCharacter.statUp("leadership", 3);
+        } else if ( answerVar == 'E' || answerVar == 'e' && chandraguptaBool==true){
+                questCharacter.resourceDown("gold", 100);
+                questCharacter.resourceDown("energy", 20);
+                questCharacter.statUp("endurance", 1);
+                questCharacter.statUp("cunning", 1);
         } else if ( answerVar == 'F' || answerVar == 'f'){
                 resources["energy"] += 5;
         } else {
