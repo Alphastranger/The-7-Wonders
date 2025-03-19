@@ -800,8 +800,8 @@ if (answerVar == 'A' || answerVar == 'a'){
                 resources["wood"]=woodSum;
 
                 cout << "\n"<< "You have constructed " + wonderSlot.name + "! Look upon your works with pride, for you are a lion amongst sheep!" << "\n"<<"\n"<<"\n";
-                cout << 100 << " Days Restored""\n""\n";
-                clockDown += 100;
+                cout << 105 << " Days Restored""\n""\n";
+                clockDown += 105;
                 if (wonArrTotal==0){
                 cout<< "\n""Congratulations! You completed all seven wonders! You have made your people proud, and established a legacy that will last throughout the ages!""\n";
                 cout << "Type 'end' to end game, or 'again' to replay"<< "\n";
