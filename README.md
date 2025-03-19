@@ -1,33 +1,38 @@
 # The-7-Wonders
-A simple application designed around building wonders before time runs out.
+A simple text application designed around building wonders before time runs out.
 
-## Version 1.0
-### Future Changes
-- Add additional characters.
-### Fixes
+## Description
+This project is a fairly straight forward text application accessed through the terminal. Run it like you would any other terminal application and you will get your first prompt, asking you to select your character by name. Mind your spelling. Following that you make your choice of wonder and try to accumulate enough resources to build that wonder before the timer, listed as "Days Left" in the top corner, runs out.
+You will first notice the text box listing resources and stats. Stone is a resource gathered by answering various questions and the amount garnered is increased based on your leadership stat. Wood is similarly governed by Intelligence, and Gold by Cunning. Endurance dictates your energy, but at the end of each turn you gain a small bit of energy based on this stat, eventually snowballing as you build that endurance stat.
+Below the resources and stats are a list of questions, the first three being pulled from a random set, while the rest are all unique. The fourth question is always the wonder question, providing resource requirements and, upon meeting them, allows you to progress to the next wonder or complete the game. The fifth question is unique to your character and is always accessible. The final question is a turn skip that gives energy should you find yourself at a loss.
+Complete every wonder, and you have won the game! That easy.
+
+![Starting Screen](images/Screenshot.png)
+
+## Credits
+[Jay Flynn](https://github.com/Alphastranger)
+
+## Version Changes
+### Version 1.0
+#### Fixes
 - Every time you answer a question an entirely new prompt pops up.
-- Upon building a wonder, the wonder menu does not reappear.
-
-- cin.ignore now doubling second answer.
-- certain answers reappearing
-- adjust the percentages on stats
-### Potential Changes
+#### Potential Changes
 - Points to modify stats at game start, perhaps with two random options of what to increase.
 - Modifier points have increasing costs the higher the stat.
 
 
-## VERSION 1.1
-### Changes
+### Version 1.1
+#### Changes
 - Bonuses from completed wonders. Name and bonus appears at side of screen when complete. Either gives a stat boost, or a permanent unique question.
 - Wonders now have a third requirement, usually luxuries, science, food, or faith.
 - Wonders also should denote their cost at the select screen.
 - Leader chooses religion at game start (Each one changes how temples work).
 - Can build structures that last for a few turn and either give a steady supply of resources or temporary stat boosts.
-### Advisors
+#### Advisors
 - At all times can hire a governor, engineer, and/or consort to give various stat buffs.
 - Each are part of a randomized pool that they are selected from at the start of the game.
 - Once purchased they give a unique question in their question slot that is permanent.
-### Future Resources
+#### Future Resources
 - New Resources: Luxuries:
     - Luxuries are used to get money or for certain wonder qualifications.
 - New Resources: Faith:
@@ -41,7 +46,7 @@ A simple application designed around building wonders before time runs out.
 - New Resources: Science:
     - Can be used to buy philosophers.
     - Philosophers will increase a random stat after a few turns along with a message saying what increased.
-### Future Stats & Stat Changes:
+#### Future Stats & Stat Changes:
 - Old Stats: Intelligence:
     - Used to determine science gain & wood.
 - Old Stats: Leadership:
