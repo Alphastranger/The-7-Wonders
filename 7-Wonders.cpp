@@ -34,7 +34,7 @@ class Wonders {
     int woodCost;
 };
 string Wonder; 
-int wonArrTotal=7;
+
 // Characters:
 class Characters {
     public:
@@ -99,6 +99,7 @@ void characterSelect(){
     //Chandragupta Maurya
     //Not necessarily a ruler, but an influential woman
     cin >> charNameInput;
+    cin.ignore();
     if (charNameInput == "Hadrian" || charNameInput == "hadrian"){
         hadrianStart();
     } else if (charNameInput == "Nefertiti" || charNameInput == "nefertiti") {
@@ -177,62 +178,98 @@ void nefertitiStart(){
 ///////////////
 // Wonder Select
 ///////////////
-
-vector<string> wonUsed;
+class wonderHell{
+    public:
+    string wonderName;
+    bool isItUsed;
+};
+wonderHell wonArray[7];
+// map<int, string> wonUsed;
 int wonUsedLength=0;
-
+int wonArrTotal=7;
+vector<string> wonTrueArray;
+bool arrSample[7]={false,false,false,false,false,false,false};
 void wonderSelect(){
-   
-    cout << "Test Spot 1""\n";
+
     cout << "wonArrTotal: "<<wonArrTotal << "\n";
-    
-    
-    //     if (wonArrTotal != 7) {
-    //     //     wonUsedLength=0;
-    //     // } else {
-    //     // // wonUsedLength = sizeof(wonUsed)/sizeof(wonUsed[0]);
-    // };
-    string wonArray[] = {
-        "The Pyramids",
-        "The Colossus",
-        "Stonehenge",
-        "The Oracle",
-        "The Great Lighthouse",
-        "The Hanging Gardens",
-        "The Great Wall of China"
-    };
-
     cout << "wonUsedLength: " <<wonUsedLength<< "\n";
-
-    vector<string> wonTrueArray;
-
-    for (int i=0, j=0; i<wonArrTotal; i++, j++){
-        if (wonUsedLength==0){
-            wonTrueArray.push_back(wonArray[i]);
-        } else {
-            if (wonArray[i]!=wonUsed[j]){
-            wonTrueArray.push_back(wonArray[i]);
-            // if (wonArray[i]!=wonUsed[0] && wonArray[i]!=wonUsed[1] && wonArray[i]!=wonUsed[2] && wonArray[i]!=wonUsed[3] && wonArray[i]!=wonUsed[4] && wonArray[i]!=wonUsed[5] && wonArray[i]!=wonUsed[6]){
-            //     wonTrueArray.push_back(wonArray[i]);
-            // };
-            };
+    
+    wonderHell Pyramids;
+        Pyramids.wonderName= "The Pyramids";
+        Pyramids.isItUsed= arrSample[0];
+    wonderHell Colossus;
+        Colossus.wonderName="The Colossus";
+        Colossus.isItUsed=arrSample[1];
+    wonderHell stoneHenge;
+        stoneHenge.wonderName="Stonehenge";
+        stoneHenge.isItUsed=arrSample[2];
+    wonderHell Oracle;
+        Oracle.wonderName="The Oracle";
+        Oracle.isItUsed=arrSample[3];
+    wonderHell Lighthouse;
+        Lighthouse.wonderName="The Great Lighthouse";
+        Lighthouse.isItUsed=arrSample[4];
+    wonderHell Gardens;
+        Gardens.wonderName="The Hanging Gardens";
+        Gardens.isItUsed=arrSample[5];
+    wonderHell greatWall;
+        greatWall.wonderName="The Great Wall of China";
+        greatWall.isItUsed=arrSample[6];
+        wonderHell wonArray[] = {
+        Pyramids, 
+        Colossus, 
+        stoneHenge, 
+        Oracle, 
+        Lighthouse, 
+        Gardens, 
+        greatWall
+    };
+    /////THIS FUCKING FOR LOOP IS KILLING ME
+    if (wonUsedLength==0){
+        for(int i=0; i<wonArrTotal; i++){
+            wonTrueArray.push_back(wonArray[i].wonderName);
         };
-    ;} 
+    };
+    for (int i=0; i<7; i++){
+    cout << "isitUsed: "<< wonArray[0].isItUsed << "\n";
+    };
+    // for (int i=0, j=0; i<wonArrTotal; i++, j++){
+    //         cout<< "\n""wonArray[i] " << wonArray[i];
+    //         cout<< "\n""wonUsed[j] " << wonUsed[j]<< "\n";
+    //             string* result0 = std::find(std::begin(wonUsed), std::end(wonUsed), "The Pyramids");
+    //             string* result1 = std::find(std::begin(wonUsed), std::end(wonUsed), "The Colossus");
+    //             if (wonUsedLength==0){
+    //             wonTrueArray.push_back(wonArray[i]);
+    //             }else if (wonArray[i]==wonUsed[j]){
+    //             cout << "\n""Gimme Some Truth!""\n";
+    //             continue;
+    //             } else if (wonArray[i] != wonUsed[j]){
+    //             wonTrueArray.push_back(wonArray[i]);
+    //             };
+    // };
+    // MAYBE IT ISN'T THAT THINGS ARENT WORKING, BUT THAT AT THE THIRD ITERATION NOTHING IS RESETTING
+
+        // } else {
+            
+            // if (wonArray[i]!=wonUsed[j]){
+            // wonTrueArray.push_back(wonArray[i]);
+            // // if (wonArray[i]!=wonUsed[0] && wonArray[i]!=wonUsed[1] && wonArray[i]!=wonUsed[2] && wonArray[i]!=wonUsed[3] && wonArray[i]!=wonUsed[4] && wonArray[i]!=wonUsed[5] && wonArray[i]!=wonUsed[6]){
+            // //     wonTrueArray.push_back(wonArray[i]);
+            // // };
+            // };
     // for (int j=0; j<wonUsedLength; j++){
     //         if (wonArray[i]!=wonUsed[j]){
     //         wonTrueArray.push_back(wonArray[i]);
     //         };
     //     };
+
     for (int i=0; i<wonArrTotal; i++){
        cout << "The One True Array: " << wonTrueArray[i]<<"\n"; 
     };
     
     string wonSelect;
+
     cout << "Please type the name of a wonder to build""\n""\n";
-
-    cout << "Problem Spot!""\n";
-
-    // ISSUE IS THAT THE PUSH_BACK FUNCTIONALITY TO REPOPULATE THE WONTRUEARRAY ISN'T WORKING AND THE GAME IS CRASHING
 
     for (int i=0; i<wonArrTotal; i++){
         cout << i+1<<". "<< wonTrueArray[i] << "\n";
@@ -247,48 +284,61 @@ void wonderSelect(){
     // cout << "7. " << wonTrueArray[6] << "\n""\n";
 
     // cout <<"selection 1"<< wonSelect<< "\n";
-    cin.ignore();
+    cin.clear();
     getline(std::cin, wonSelect);
-    // cout <<"selection 2" << wonSelect<< "\n";
-    cout << "False Start""\n";
+    // cout <<"selection 2" << wonSelect<< "\n"
+
+    //Try making this a separate function again.
     int False = 0;
+
     for (int i = 0; i<wonArrTotal; i++){
-        // cout << wonTrueArray[i] << "\n";
-        // cout << wonSelect << "\n";
-        // if (wonSelect == wonTrueArray[i]){
-        //     cout << "Comparison success""\n";
-        // };
-        if (wonSelect != wonTrueArray[i]){
+        if (wonSelect!=wonTrueArray[i]){
             False++;
+        } else if (wonSelect == wonTrueArray[i]){
         };
     };
-    // cout << False;
-    cout << "If statements start""\n";
     if (False >= wonArrTotal) {
         cout << "\n""Sorry, that is not a valid input! Please try to be exact!""\n";
         wonderSelect();
     } else {
         Wonder = wonSelect;
     };
-    cout << "For Loop starts""\n";
+
     cout << "wonSelect Variable: " << wonSelect<<"\n";
 
-    wonUsed.push_back(wonSelect);
+    // wonUsed[wonUsedLength] = wonSelect;
 
-    for (int i=0; i<wonArrTotal; i++){
-        wonTrueArray.pop_back();
+    // wonUsed.push_back(wonSelect);
+    wonTrueArray.clear();
+    // for (int i=0; i<wonArrTotal; i++){
+    //     wonTrueArray.pop_back();
+    // };
+
+    for (int i=0; i<7; i++){
+        if (wonArray[i].wonderName==wonSelect){
+            arrSample[i]=true;
+            wonArray[i].isItUsed=true;
+            cout << "I true: "<<wonArray[i].wonderName << " "<< wonArray[i].isItUsed<<"\n";   
+        };
     };
-
+    for (int i=0, j=0; j<wonArrTotal, i<7;j++, i++){
+        cout << "All the facts: "<<wonArray[i].wonderName<<" "<<wonArray[i].isItUsed<<"\n";
+        if (wonArray[i].isItUsed!=true){
+            wonTrueArray.push_back(wonArray[i].wonderName);
+        };
+    };
+    for (int i=0; i<wonArrTotal; i++){
+        cout << "Won True Array End: " << wonTrueArray[i] << "\n";
+    };
     wonArrTotal--;
     wonUsedLength++;
-    cout << "Just at the change over""\n";
+    
 
-    for (int i=0; i<=wonUsedLength-1; i++){
-        cout << "Used Wonders: " << wonUsed[i]<< "\n";
-    };
-    cout << "Is this thing on?""\n";
+    // for (int i=0; i<=wonUsedLength-1; i++){
+    //     cout << "Used Wonders: " << wonUsed[i]<< "\n";
+    // };
     startScreen();
-}
+};
 
 ///////////////
 // Start Screen
@@ -773,11 +823,8 @@ if (answerVar == 'A' || answerVar == 'a'){
                 resources["wood"]=woodSum;
 
                 cout << "\n"<< "You have constructed " + wonderSlot.name + "! Look upon your works with pride, for you are a lion amongst sheep!" << "\n"<<"\n"<<"\n";
-                cout << "Time Restored""\n""\n";
+                cout << 100 << " Days Restored""\n""\n";
                 clockDown += 100;
-
-                cout << "Test Spot 2""\n";
-
                 if (wonArrTotal==0){
                 cout<< "\n""Congratulations! You completed all seven wonders! You have made your people proud, and established a legacy that will last throughout the ages!""\n";
                 cout << "Type 'end' to end game"<< "\n";
@@ -791,6 +838,7 @@ if (answerVar == 'A' || answerVar == 'a'){
                     exit(0);
                 };
                 }else {
+                    cin.ignore();
                     wonderSelect();
                 };
             } else {

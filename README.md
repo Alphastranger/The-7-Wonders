@@ -7,6 +7,10 @@ A simple application designed around building wonders before time runs out.
 ### Fixes
 - Every time you answer a question an entirely new prompt pops up.
 - Upon building a wonder, the wonder menu does not reappear.
+
+- cin.ignore now doubling second answer.
+- certain answers reappearing
+- adjust the percentages on stats
 ### Potential Changes
 - Points to modify stats at game start, perhaps with two random options of what to increase.
 - Modifier points have increasing costs the higher the stat.
