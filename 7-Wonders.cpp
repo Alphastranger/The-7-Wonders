@@ -6,7 +6,7 @@
 #include <random>
 using namespace std;
 // Clock
-int clockDown = 1456;
+int clockDown = 2100;
 // Resources:
 map<string, int> resources;
 int gold;
@@ -80,7 +80,8 @@ void clockTicker(){
         if (clockDown > 0) {
             startScreen();
         } else {
-            cout << "Game Over" << "\n";
+            cout << "\n""Game Over""\n""\n";
+            exit(0);
         };
 };
 
@@ -93,12 +94,16 @@ void characterSelect(){
     cout << "Type in their name to select your character" << "\n";
     cout << "1. Hadrian" << "\n";
     cout << " A wise and steady emperor of Rome. Gifted in Leadership and stoneworking." << "\n";
+    cout << " Hadrian is a balanced character who excels in the use of stone and energy to get an economy going. Don't let wood and gold slip!""\n""\n";
     cout << "2. Nefertiti" << "\n";
     cout << " The wife of Akhenaten who famously pushed Egypt towards monotheism. Gifted in Cunning and tithes." << "\n";
+    cout << " Nefertiti is geared towards gold generation exclusively. Let that fuel your resource economy.""\n""\n";
     cout << "3. Boudicca" << "\n";
     cout << " A Celtic warrior who fought back against the great empire of Rome as it lapped at Britannia's shores and tore up its people.""\n";
+    cout << " Boudicca excels in generating wood and stone, but struggles when it comes to gold generation. Be mindful!""\n""\n";
     cout << "4. Chandragupta" << "\n";
     cout << " The closest the South Asian people would come to true unification before the 20th century was the grand conquest of Maurya, as he reclaimed India from the Greeks.""\n";
+    cout << " Chandragupta Maurya starts small, with low stats, but over time can grow to be something amazing.""\n";
     cout << "\n""\n";
 
     cin >> charNameInput;
@@ -165,7 +170,7 @@ void nefertitiStart(){
         Nefertiti.startStone = 200;
         Nefertiti.startWood = 100;
         Nefertiti.startEnergy = 15;
-        Nefertiti.Quest = "Celebrate Atun with merriment and excess, costing 10 energy and granting 200 gold?";
+        Nefertiti.Quest = "Celebrate Atun with merriment and excess, costing 1 turn and granting 150 gold?";
     charName = Nefertiti.name;
     statistics["leadership"] = Nefertiti.startLead;
     statistics["intelligence"] = Nefertiti.startInt;
@@ -197,7 +202,7 @@ void boudiccaStart(){
         Boudicca.startStone = 200;
         Boudicca.startWood = 400;
         Boudicca.startEnergy = 10;
-        Boudicca.Quest = "Roman patrols have been spotted nearby; assail them at the cost of 400 wood to earn 3 leadership?";
+        Boudicca.Quest = "Roman patrols have been spotted nearby; assail them at the cost of 400 wood to earn 4 leadership?";
     charName = Boudicca.name;
     statistics["leadership"] = Boudicca.startLead;
     statistics["intelligence"] = Boudicca.startInt;
@@ -220,15 +225,15 @@ void boudiccaStart(){
 void chandraguptaStart(){
     Characters Chandragupta;
         Chandragupta.name = "Chandragupta";
-        Chandragupta.startLead = 2;
-        Chandragupta.startInt = 3;
-        Chandragupta.startCun = 2;
-        Chandragupta.startEnd = 3;
-        Chandragupta.startGold = 100;
-        Chandragupta.startStone = 100;
-        Chandragupta.startWood = 200;
-        Chandragupta.startEnergy = 15;
-        Chandragupta.Quest = "You are a budding flower, Chandragupta Maurya; pray and learn at the cost of 20 energy and 100 gold to gain 1 cunning and 1 endurance?";
+        Chandragupta.startLead = 1;
+        Chandragupta.startInt = 1;
+        Chandragupta.startCun = 1;
+        Chandragupta.startEnd = 1;
+        Chandragupta.startGold = 50;
+        Chandragupta.startStone = 50;
+        Chandragupta.startWood = 50;
+        Chandragupta.startEnergy = 5;
+        Chandragupta.Quest = "You are a budding flower, Chandragupta Maurya; pray and learn at the cost of 100 stone, 100 wood, 100 gold, and 20 energy to gain 1 leadership, 1 intelligence, 1 cunning, and 1 endurance?";
     charName = Chandragupta.name;
     statistics["leadership"] = Chandragupta.startLead;
     statistics["intelligence"] = Chandragupta.startInt;
@@ -349,11 +354,11 @@ void startScreen(){
         cout << "\n" << charName << "  |  " << "Days Left: " << clockDown << "\n" << "\n";
         cout << "Resources:   " << "Stats:" << "\n";
         cout << "----------------------------------------------"<< "\n";
-        cout << "| Gold:" << resources["gold"] << " | Leadership:" << statistics["leadership"] << " |""\n";
+        cout << "| Stone:" << resources["stone"] << " | Leadership:" << statistics["leadership"] << " |""\n";
         cout << "----------------------------------------------"<< "\n";
-        cout << "| Stone:" << resources["stone"] << " | Intelligence:" << statistics["intelligence"] << " |""\n";
+        cout << "| Wood:" << resources["wood"] << " | Intelligence:" << statistics["intelligence"] << " |""\n";
         cout << "----------------------------------------------"<< "\n";
-        cout << "| Wood:" << resources["wood"] << " | Cunning:" << statistics["cunning"] << " |""\n";
+        cout << "| Gold:" << resources["gold"] << " | Cunning:" << statistics["cunning"] << " |""\n";
         cout << "----------------------------------------------"<< "\n";
         cout << "| Energy:" << resources["energy"] << " | Endurance:" << statistics["endurance"] << " |""\n";
         cout << "----------------------------------------------"<< "\n";
@@ -639,6 +644,16 @@ void questionsFunc(){
         questFifteen.resUpMod = leaderMod;
         questFifteen.resDownStr = "wood";
         questFifteen.resDownInt = 100;
+    Questions questSixteen;
+        questSixteen.questionText = "The people call out for wood to burn as a harsh Winter settles in. Chop down a forest at the cost of 4 endurance to receive 400 wood?";
+        questSixteen.ID = 16;
+        questSixteen.resUp = true;
+        questSixteen.statDownBool = true;
+        questSixteen.resUpStr = "wood";
+        questSixteen.resUpInt = 400;
+        questSixteen.resUpMod = intelMod;
+        questSixteen.statDownStr = "endurance";
+        questSixteen.statDownInt = 4;
 
     
     Questions qArray[] = {
@@ -658,6 +673,7 @@ void questionsFunc(){
         questThirteen,
         questFourteen,
         questFifteen,
+        questSixteen,
     };
 
     int qArrayLength = sizeof(qArray)/sizeof(qArray[0]);
@@ -829,15 +845,21 @@ if (answerVar == 'A' || answerVar == 'a'){
                 questCharacter.resourceDown("stone", 50);
                 questCharacter.resourceUp("energy", 20, enduranceMod);
                 
-        } else if ( answerVar == 'E' || answerVar == 'e' && nefertitiBool==true){ 
-                questCharacter.resourceDown("energy", 10);
-                questCharacter.resourceUp("gold", 200, cunningMod); 
+        } else if ( answerVar == 'E' || answerVar == 'e' && nefertitiBool==true){
+                cout << "\n""...Two Weeks Pass...""\n";
+                clockDown -= 7;
+                // questCharacter.resourceDown("energy", 10);
+                questCharacter.resourceUp("gold", 150, cunningMod); 
         } else if ( answerVar == 'E' || answerVar == 'e' && boudiccaBool==true){
                 questCharacter.resourceDown("wood", 400);
-                questCharacter.statUp("leadership", 3);
+                questCharacter.statUp("leadership", 4);
         } else if ( answerVar == 'E' || answerVar == 'e' && chandraguptaBool==true){
+                questCharacter.resourceDown("stone", 100);
+                questCharacter.resourceDown("wood",100);
                 questCharacter.resourceDown("gold", 100);
                 questCharacter.resourceDown("energy", 20);
+                questCharacter.statUp("leadership", 1);
+                questCharacter.statUp("intelligence", 1);
                 questCharacter.statUp("endurance", 1);
                 questCharacter.statUp("cunning", 1);
         } else if ( answerVar == 'F' || answerVar == 'f'){
@@ -846,8 +868,8 @@ if (answerVar == 'A' || answerVar == 'a'){
             cout << "\n""Invalid input. Please enter a valid answer."<< "\n";
             cin.clear();
         }
-        
-        resources["energy"] += enduranceMod;
+        int endTicker = statistics["endurance"]/2;
+        resources["energy"] += endTicker;
         clockTicker();
 };
 
