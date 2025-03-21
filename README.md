@@ -55,3 +55,10 @@ Complete every wonder, and you have won the game! That easy.
     - Increases faith gain.
 - New Stats: Fertility:
     - Increases food gain.
+
+### Version 1.2
+#### Changes
+- Make wonders built slowly, contributing whatever you can to it.
+- Add AI opponents who are also slowly getting resources and trying to build the wonders.
+- Either have the race to be who finishes all seven, or who finishes the most by the end.
+- To expand on that, if the AI or player builds a wonder it is no longer available and any resources spent building are lost.
